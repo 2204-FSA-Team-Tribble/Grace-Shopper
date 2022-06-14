@@ -73,6 +73,7 @@ async function seed() {
       email: 'richierich@gmail.com',
       password: '603',
     }),
+
     User.create({
       firstname: 'Matthew',
       lastname: 'Peters',
@@ -106,6 +107,7 @@ async function seed() {
       email: 'mannycooldude@yahoo.com',
       password: '002',
     }),
+
     User.create({
       firstname: 'Nathaniel',
       lastname: 'Philip',
@@ -117,6 +119,7 @@ async function seed() {
       email: 'natrudy@yahoo.com',
       password: '300',
     }),
+
     User.create({
       firstname: 'Shirley',
       lastname: 'GoodLuck',
@@ -135,9 +138,20 @@ async function seed() {
       return Product.create(item);
     })
   );
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded ${products.length} users`);
+
+
   console.log(`seeded successfully`);
+
+  await users[0].addProducts([products[2], [3]]);
+  await users[1].addProducts(products[1]);
+  await users[2].addProducts([products[50], [9], [21], [2]]);
+  await users[3].addProducts([products[51], [43], [32], [11], [6]]);
+  await users[4].addProducts([products[1], [45], [44]]);
+  await users[5].addProducts([products[4], [6], [9], [29]]);
+  await users[6].addProducts([products[15], [19], [31]]);
+  await users[7].addProducts([products[1], [43], [55], [46], [47]]);
+  await users[8].addProducts([products[26], [37]]);
+
   return {
     users: {
       cody: users[0],
