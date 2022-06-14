@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 const Cart = () => {
   // Placeholder cart array
@@ -11,9 +12,9 @@ const Cart = () => {
   return (
     <div>
       <h3>Shopping Cart</h3>
-      {cart.map((item) => {
+      {cart.map((item, index) => {
         return (
-          <div className="cart-item">
+          <div className="cart-item" key={index}>
             <div>{/* Image Placeholder */}</div>
             <div>
               <p>{item.name}</p>
@@ -42,4 +43,8 @@ const Cart = () => {
   )
 }
 
-export default Cart
+const mapState = (state) => ({
+  cart: state.cart,
+})
+
+export default connect(mapState, null)(Cart);
