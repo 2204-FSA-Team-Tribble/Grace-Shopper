@@ -12,125 +12,131 @@ const productSeed = require('./ProductSeed');
 
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log("db synced!");
+  console.log('db synced!');
 
   // Creating Users
   const users = await Promise.all([
     User.create({
-      firstname: "Cody",
-      lastname: "Smith",
-      address: "171 Wallace Blvd Apt.6Z",
-      city: "Atlanta",
-      state: "GA",
+      firstname: 'Cody',
+      lastname: 'Smith',
+      address: '171 Wallace Blvd Apt.6Z',
+      city: 'Atlanta',
+      state: 'GA',
       zipcode: 34093,
-      username: "cody",
-      email: "codythecoder@gmail.com",
-      password: "123",
+      username: 'cody',
+      email: 'codythecoder@gmail.com',
+      password: '123',
       isAdmin: true,
     }),
     User.create({
-      firstname: "Murphy",
-      lastname: "Benson",
-      address: "1502 Southplace Rd",
-      city: "Brooklyn",
-      state: "NY",
+      firstname: 'Murphy',
+      lastname: 'Benson',
+      address: '1502 Southplace Rd',
+      city: 'Brooklyn',
+      state: 'NY',
       zipcode: 38970,
-      username: "murphy",
-      email: "murphywonder@gmail.com",
-      password: "456",
+      username: 'murphy',
+      email: 'murphywonder@gmail.com',
+      password: '456',
       isAdmin: true,
     }),
     User.create({
-      firstname: "Milo",
-      lastname: "Victor",
-      address: "10 Millieway Street",
-      city: "Queens",
-      state: "NY",
+      firstname: 'Milo',
+      lastname: 'Victor',
+      address: '10 Millieway Street',
+      city: 'Queens',
+      state: 'NY',
       zipcode: 38970,
-      username: "milo",
-      email: "milomilo@gmail.com",
-      password: "789",
+      username: 'milo',
+      email: 'milomilo@gmail.com',
+      password: '789',
     }),
     User.create({
-      firstname: "Allie",
-      lastname: "Andrew",
-      address: "Milky Homes Apt. 9J",
-      city: "Bronx",
-      state: "NY",
+      firstname: 'Allie',
+      lastname: 'Andrew',
+      address: 'Milky Homes Apt. 9J',
+      city: 'Bronx',
+      state: 'NY',
       zipcode: 38970,
-      username: "allie",
-      email: "alliecool@yahoo.com",
-      password: "012",
+      username: 'allie',
+      email: 'alliecool@yahoo.com',
+      password: '012',
     }),
     User.create({
-      firstname: "Richie",
-      lastname: "Matthew",
-      address: "1950 Southampton Rd. Apt. F9",
-      city: "Atlanta",
-      state: "GA",
+      firstname: 'Richie',
+      lastname: 'Matthew',
+      address: '1950 Southampton Rd. Apt. F9',
+      city: 'Atlanta',
+      state: 'GA',
       zipcode: 30070,
-      username: "rich",
-      email: "richierich@gmail.com",
-      password: "603",
+      username: 'rich',
+      email: 'richierich@gmail.com',
+      password: '603',
     }),
     User.create({
-      firstname: "Matthew",
-      lastname: "Peters",
-      address: "13 Allway homes",
-      city: "Nashville",
-      state: "TN",
+      firstname: 'Matthew',
+      lastname: 'Peters',
+      address: '13 Allway homes',
+      city: 'Nashville',
+      state: 'TN',
       zipcode: 38019,
-      username: "matthew",
-      email: "mathewwonderer@gmail.com",
-      password: "506",
+      username: 'matthew',
+      email: 'mathewwonderer@gmail.com',
+      password: '506',
     }),
     User.create({
-      firstname: "Katherine",
-      lastname: "Aderogba",
-      address: "892 Cherrywood Ln",
-      city: "Knoxville",
-      state: "KY",
+      firstname: 'Katherine',
+      lastname: 'Aderogba',
+      address: '892 Cherrywood Ln',
+      city: 'Knoxville',
+      state: 'KY',
       zipcode: 38970,
-      username: "katherine",
-      email: "Katiecat@gmail.com",
-      password: "546",
+      username: 'katherine',
+      email: 'Katiecat@gmail.com',
+      password: '546',
     }),
     User.create({
-      firstname: "Emmanuel",
-      lastname: "Independent",
-      address: "2345 Besthomes Rd",
-      city: "OakWood",
-      state: "OK",
+      firstname: 'Emmanuel',
+      lastname: 'Independent',
+      address: '2345 Besthomes Rd',
+      city: 'OakWood',
+      state: 'OK',
       zipcode: 20970,
-      username: "manny",
-      email: "mannycooldude@yahoo.com",
-      password: "002",
+      username: 'manny',
+      email: 'mannycooldude@yahoo.com',
+      password: '002',
     }),
     User.create({
-      firstname: "Nathaniel",
-      lastname: "Philip",
-      address: "1951 Longbeach",
-      city: "Birmingham",
-      state: "AL",
+      firstname: 'Nathaniel',
+      lastname: 'Philip',
+      address: '1951 Longbeach',
+      city: 'Birmingham',
+      state: 'AL',
       zipcode: 16723,
-      username: "nat",
-      email: "natrudy@yahoo.com",
-      password: "300",
+      username: 'nat',
+      email: 'natrudy@yahoo.com',
+      password: '300',
     }),
     User.create({
-      firstname: "Shirley",
-      lastname: "GoodLuck",
-      address: "Milky Homes Apt. 9J",
-      city: "Burlington",
-      state: "IA",
+      firstname: 'Shirley',
+      lastname: 'GoodLuck',
+      address: 'Milky Homes Apt. 9J',
+      city: 'Burlington',
+      state: 'IA',
       zipcode: 38970,
-      username: "shirley",
-      email: "shirlythebossb@yahoo.com",
-      password: "390",
+      username: 'shirley',
+      email: 'shirlythebossb@yahoo.com',
+      password: '390',
     }),
   ]);
-
+  //Creating Products
+  const products = await Promise.all(
+    productSeed.map((item) => {
+      return Product.create(item);
+    })
+  );
   console.log(`seeded ${users.length} users`);
+  console.log(`seeded ${products.length} users`);
   console.log(`seeded successfully`);
   return {
     users: {
@@ -146,16 +152,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log("seeding...");
+  console.log('seeding...');
   try {
     await seed();
   } catch (err) {
     console.error(err);
     process.exitCode = 1;
   } finally {
-    console.log("closing db connection");
+    console.log('closing db connection');
     await db.close();
-    console.log("db connection closed");
+    console.log('db connection closed');
   }
 }
 
