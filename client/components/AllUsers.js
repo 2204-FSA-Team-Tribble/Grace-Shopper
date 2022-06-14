@@ -80,4 +80,4 @@ const mapState = (state) => ({
   users: state.users,
 })
 
-export default connect(mapState, null)(AllUsers);
+export default connect(mapState)(AllUsers);

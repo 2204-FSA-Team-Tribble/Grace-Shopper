@@ -1,22 +1,22 @@
 import axios from 'axios'
 
 // Action Type
-const SET_CART = 'SET_CART'
+const SET_USER = 'SET_USER'
 
 // Action Creator
-const _setCart = (items) => {
+const _setUser = (user) => {
   return {
-    type: SET_CART,
-    items
+    type: SET_USER,
+    user
   }
 }
 
 // Thunk Creator
-export const setCart = (id) => {
+export const setUser = (id) => {
   return async (dispatch) => {
     try {
       const {data} = await axios.get(/* API ROUTE */)
-      dispatch(_setCart(data))
+      dispatch(_setUser(data))
     } catch (error) {
       console.log(error)
     }
@@ -24,12 +24,12 @@ export const setCart = (id) => {
 }
 
 // Initial State
-const initialState = []
+const initialState = {}
 
-export default function cartReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_CART:
-      return action.items
+    case SET_USER:
+      return action.user
     default:
       return state
   }
