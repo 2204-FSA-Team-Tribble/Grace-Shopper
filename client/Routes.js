@@ -6,7 +6,7 @@ import Home from './components/Home';
 import {me} from './store'
 import Products from './components/Products.js';
 import ProductsAdmin from './components/ProductsAdmin.js';
-
+import CreateProduct from './components/CreateProduct.js'
 /**
  * COMPONENT
  */
@@ -26,6 +26,7 @@ class Routes extends Component {
             <Redirect to="/home" />
             <Route path='/products' component={Products} />
             <Route path='/productsadmin' component={ProductsAdmin} />
+            <Route path='/createProduct' component={CreateProduct} />
           </Switch>
         ) : (
           <Switch>
@@ -34,6 +35,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path='/products' component={Products} />
             <Route path='/productsadmin' component={ProductsAdmin} />
+            <Route path='/createProduct' component={CreateProduct} />
           </Switch>
         )}
       </div>

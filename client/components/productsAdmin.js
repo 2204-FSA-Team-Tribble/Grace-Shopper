@@ -26,7 +26,7 @@ export class ProductsAdmin extends React.Component {
       <div>
         <h1>Products - Admin</h1>
         <div>
-            <Link to="/productsadmin/create">
+            <Link to="/createProduct">
               <button className="section-button" type='button'>
                 Create a product
               </button>
@@ -39,17 +39,17 @@ export class ProductsAdmin extends React.Component {
               <img src={product.image} />
               <p>${product.price}</p>
               <button className='delete' onClick={
-                                (evt) => {
-                                  this.handleDelete(product.id);
-                                }
-                              }>X
-                            </button>
-                <button
-                  className='update'
-                  onClick={() => this.props.updateProduct(this.props.match.params.id)}
-                >
-                  Update
-                </button>
+                  (evt) => {
+                      this.handleDelete(product.id);
+                    }
+                  }>X
+              </button>
+              <button
+                className='update'
+                onClick={() => this.props.updateProduct(this.props.match.params.id)}
+              >
+                Update
+              </button>
             </div>
           )
         })}
