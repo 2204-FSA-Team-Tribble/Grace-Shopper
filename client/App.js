@@ -1,13 +1,15 @@
 import React from 'react'
 
 import Navbar from './components/Navbar'
+import Cart from './components/Cart'
+import AllUsers from './components/AllUsers'
 import Routes from './Routes'
 
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Routes />
+      <Cart />
+      <AllUsers />
     </div>
   )
 }
