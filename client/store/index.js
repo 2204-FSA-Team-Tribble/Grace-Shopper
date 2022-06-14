@@ -5,11 +5,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import productsReducer from './products'
 import deleteProductReducer from './deleteProduct'
+import createProductReducer from './createProduct'
 
 const reducer = combineReducers({
   auth,
   products: productsReducer,
   deleteProduct: deleteProductReducer,
+  createProduct: createProductReducer,
 })
 
 const middleware = composeWithDevTools(
