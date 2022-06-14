@@ -10,13 +10,13 @@ const adapter = new Adapter()
 enzyme.configure({adapter})
 
 describe('AllUsers', () => {
-  let AllUsers
+  let allusers
 
   beforeEach(() => {
-    AllUsers = shallow(<AllUsers />)
+    allusers = shallow(<AllUsers />)
   })
 
   it('renders the email in an h3', () => {
-    expect(AllUsers.find('h3').text()).to.be.equal('All Users')
+    expect(allusers.find('h3').text()).to.be.equal('All Users')
   })
 })
