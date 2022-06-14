@@ -6,6 +6,7 @@ import enzyme, {shallow} from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import { Home } from './Home'
 
+
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
@@ -20,3 +21,4 @@ describe('Home', () => {
     expect(home.find('h3').text()).to.be.equal('Welcome, cody')
   })
 })
+

@@ -426,4 +426,4 @@ let template= {
   petType: 'cat',
   clothingType: 'shirt',
   price: 12.21,
-},
+}
