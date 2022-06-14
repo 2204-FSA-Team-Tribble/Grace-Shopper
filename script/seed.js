@@ -139,6 +139,7 @@ async function seed() {
     })
   );
 
+
   console.log(`seeded successfully`);
 
   await users[0].addProducts([products[2], [3]]);
