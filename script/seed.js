@@ -138,8 +138,7 @@ async function seed() {
       return Product.create(item);
     })
   );
-  // console.log(`seeded ${users.length} users`);
-  // console.log(`seeded ${products.length} users`);
+
   console.log(`seeded successfully`);
 
   await users[0].addProducts([products[2], [3]]);
