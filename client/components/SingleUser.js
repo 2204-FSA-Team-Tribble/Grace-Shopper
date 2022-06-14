@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
 import { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 
 const SingleUser = () => {
   const [user, setUser] = useState({})

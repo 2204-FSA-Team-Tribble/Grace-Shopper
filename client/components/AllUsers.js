@@ -1,9 +1,12 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 const AllUsers = () => {
+  const [users, setUsers] = useState([])
+
   // Placeholder user array
-  const users = [
+  const testUsers = [
     {
       id: 1,
       firstName: 'Bob',
@@ -32,6 +35,11 @@ const AllUsers = () => {
       password: 'ilovecats1',
     },
   ]
+
+  // Assign user to state, dispatch will go here
+  useEffect(() => {
+    setUsers(testUsers)
+  }, [])
 
   return (
     <div>
@@ -80,4 +88,8 @@ const mapState = (state) => ({
   users: state.users,
 })
 
-export default connect(mapState)(AllUsers);
+const mapDispatch = (dispatch) => ({
+  getUsers: () => dispatch(getUsers())
+})
+
+export default connect(mapState, mapDispatch)(AllUsers);

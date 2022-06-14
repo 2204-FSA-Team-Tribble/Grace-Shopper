@@ -1,18 +1,26 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 const Cart = () => {
+  const [items, setItems] = useState([])
+
   // Placeholder cart array
-  const cart = [
+  const testCart = [
     { name: 'Dog Romper', price: '20', description: 'Romper for dogs' },
     { name: 'Hamster Hat', price: '40', description: 'Hat for hamsters' },
     { name: 'Kitten Mittens', price: '5', description: 'Mittens for cats' },
   ]
 
+  // Assign cart to state, dispatch will go here
+  useEffect(() => {
+    setItems(testCart)
+  }, [])
+
   return (
     <div>
       <h3>Shopping Cart</h3>
-      {cart.map((item, index) => {
+      {items.map((item, index) => {
         return (
           <div className="cart-item" key={index}>
             <div>{/* Image Placeholder */}</div>
