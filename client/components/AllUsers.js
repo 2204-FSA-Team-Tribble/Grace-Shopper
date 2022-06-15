@@ -27,7 +27,7 @@ export class AllUsers extends React.Component {
               <th>Address</th>
               <th>Username</th>
               <th>Email</th>
-              <th>Password</th>
+              <th>Account Type</th>
               <th></th>
             </tr>
           </thead>
@@ -36,15 +36,12 @@ export class AllUsers extends React.Component {
               return (
                 <tr className="user" key={user.id}>
                   {/* <td>{`${user.firstname} ${user.lastname}`}</td>
-                  <td>{user.address}</td> */}
+                  <td>{`${user.address}. ${user.city}, ${user.state}. ${user.zipcode}`}</td> */}
                   <td>{user.username}</td>
-                  {/* <td>{user.email}</td>
+                  {/* <td>{user.email}</td> */}
                   <td>
-                    {user.password
-                      .split('')
-                      .map((char) => '*')
-                      .join('')}
-                  </td> */}
+                    {user.isAdmin ? ('True') : ('Null')}
+                  </td>
                   <td>
                     <a href="#">Edit</a>
                   </td>

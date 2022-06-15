@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import CartLink from './CartLink'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
@@ -22,6 +23,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+      <CartLink />
     </nav>
     <hr />
   </div>

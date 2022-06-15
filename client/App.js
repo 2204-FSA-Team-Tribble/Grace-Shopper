@@ -12,7 +12,6 @@ const App = () => {
     <div>
       <Navbar />
       <Routes />
-      <CartLink />
     </div>
   )
 }
