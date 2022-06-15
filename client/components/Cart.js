@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { setCart, _setCart } from '../store/cart'
 
 const items = [
   { name: 'Dog Romper', price: '20', description: 'Romper for dogs' },
@@ -9,15 +10,23 @@ const items = [
 ]
 
 export class Cart extends React.Component {
-
+  componentDidUpdate(prevProps) {
+    if (prevProps.auth.id !== this.props.auth.id) {
+      if (!this.props.auth.id) {
+        this.props.clearCart()
+      } else {
+        this.props.setCart(this.props.auth.id)
+      }
+    }
+  }
 
   render() {
-    const products = this.props.user.products || []
+    const products = this.props.cart || []
 
     return (
       <div>
         <h3>Shopping Cart</h3>
-        {items.map((item, index) => {
+        {products.map((item, index) => {
           return (
             <div className="cart-item" key={index}>
               <div><img src={`${item.image}`} /></div>
@@ -51,11 +60,12 @@ export class Cart extends React.Component {
 
 const mapState = (state) => ({
   cart: state.cart,
-  user: state.user,
+  auth: state.auth
 })
 
 const mapDispatch = (dispatch) => ({
-  getCart: (id) => dispatch(getCart(id)),
+  setCart: (id) => dispatch(setCart(id)),
+  clearCart: () => dispatch(_setCart([]))
 })
 
 export default connect(mapState, mapDispatch)(Cart)
