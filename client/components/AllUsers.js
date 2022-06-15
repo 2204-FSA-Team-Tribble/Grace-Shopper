@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setUsers } from '../store/users.js'
+import { setUsers } from '../store/users'
 
 // Placeholder user array
 const testUsers = [
@@ -62,7 +62,7 @@ export class AllUsers extends React.Component {
             {this.props.users.map((user) => {
               return (
                 <tr className="user" key={user.id}>
-                  {/* <td>{`${user.firstName} ${user.lastName}`}</td>
+                  {/* <td>{`${user.firstname} ${user.lastname}`}</td>
                   <td>{user.address}</td> */}
                   <td>{user.username}</td>
                   {/* <td>{user.email}</td>

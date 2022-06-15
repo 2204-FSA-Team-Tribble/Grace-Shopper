@@ -2,11 +2,19 @@ import axios from 'axios'
 
 // Action Type
 const SET_USER = 'SET_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
 // Action Creator
-const _setUser = (user) => {
+export const _setUser = (user) => {
   return {
     type: SET_USER,
+    user
+  }
+}
+
+export const _updateUser = (user) => {
+  return {
+    type: UPDATE_USER,
     user
   }
 }
@@ -15,11 +23,18 @@ const _setUser = (user) => {
 export const setUser = (id) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(/* API ROUTE */)
+      const {data} = await axios.get(`/api/users/${id}`)
       dispatch(_setUser(data))
     } catch (error) {
       console.log(error)
     }
+  }
+}
+
+export const updateUser = (user) => {
+  return async (dispatch) => {
+    const {data} = await axios.put(/* API ROUTE, user */)
+    dispatch(_updateUser(data))
   }
 }
 

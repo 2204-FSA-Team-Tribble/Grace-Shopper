@@ -9,9 +9,8 @@ import Cart from './components/Cart'
 const App = () => {
   return (
     <div>
-      <AllUsers />
-      <SingleUser />
-      <Cart />
+      <Navbar />
+      <Routes />
     </div>
   )
 }
