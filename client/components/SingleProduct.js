@@ -13,22 +13,23 @@ class SingleProduct extends React.Component {
   }
 
   render() {
-    const {product} = this.props;
+    let product = this.props.product.product || {}
 
     return (
-      // <div key={product.id}>
-      //   <h2>{product.name}</h2>
-      //   <img src={product.image} />
-      //   <p>{product.description}</p>
-      //   <p>${product.price}</p>
-      // </div>
-      <div>hello</div>
+      <div>
+        <div>
+          <h2>{product.name}</h2>
+          <img src={product.image} />
+          <p>{product.description}</p>
+          <p>${product.price}</p>
+        </div>
+      </div>
     )
   }
 }
 
 const mapState = (state) => {
-  return {product: state.product};
+  return {product: state.singleProduct};
 };
 
 const mapDispatch = (dispatch) => {
