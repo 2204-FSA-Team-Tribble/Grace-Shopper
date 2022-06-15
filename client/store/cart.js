@@ -12,7 +12,7 @@ const _setCart = (items) => {
 }
 
 // Thunk Creator
-export const setCart = (username) => {
+export const setCart = (id) => {
   return async (dispatch) => {
     try {
       const {data} = await axios.get(/* API ROUTE */)
