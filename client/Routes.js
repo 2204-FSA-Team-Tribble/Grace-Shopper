@@ -8,6 +8,7 @@ import Products from './components/Products.js';
 import ProductsAdmin from './components/ProductsAdmin.js';
 import CreateProduct from './components/CreateProduct.js'
 import SingleProduct from './components/SingleProduct.js'
+import SingleProductAdmin from './components/SingleProductAdmin.js'
 /**
  * COMPONENT
  */
@@ -27,7 +28,8 @@ class Routes extends Component {
             <Redirect to="/home" />
             <Route exact path='/products' component={Products} />
             <Route exact path='/products/:id' component={SingleProduct} />
-            <Route path='/productsadmin' component={ProductsAdmin} />
+            <Route exact path='/productsadmin' component={ProductsAdmin} />
+            <Route exact path='/productsadmin/:id' component={SingleProductAdmin} />
             <Route path='/createProduct' component={CreateProduct} />
           </Switch>
         ) : (
@@ -37,7 +39,8 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route exact path='/products' component={Products} />
             <Route exact path='/products/:id' component={SingleProduct} />
-            <Route path='/productsadmin' component={ProductsAdmin} />
+            <Route exact path='/productsadmin' component={ProductsAdmin} />
+            <Route exact path='/productsadmin/:id' component={SingleProductAdmin} />
             <Route path='/createProduct' component={CreateProduct} />
           </Switch>
         )}
