@@ -71,11 +71,23 @@ class SingleProductAdmin extends React.Component {
             <label htmlFor='name'>Product Name: </label>
             <input name='name' onChange={handleChange} value={name} />
             <label htmlFor='clothingType'>Clothing Type: </label>
-            <input name='clothingType' onChange={handleChange} value={clothingType} />
+            <select name='clothingType' onChange={handleChange} value={clothingType}>
+              <option value='shirt'>shirt</option>
+              <option value='dress'>dress</option>
+              <option value='coat'>coat</option>
+              <option value='swim'>swim</option>
+              <option value='shoes'>shoes</option>
+              <option value='other'>other</option>
+            </select>
             <label htmlFor='petType'>Pet Type </label>
-            <input name='petType' onChange={handleChange} value={petType} />
+            <select name='petType' onChange={handleChange} value={petType}>
+              <option value='dog'>dog</option>
+              <option value='cat'>cat</option>
+              <option value='horse'>horse</option>
+              <option value='other'>other</option>
+            </select>
             <label htmlFor='price'>Price: </label>
-            <input name='price' onChange={handleChange} value={price} />
+            <input name='price' onChange={handleChange} value={price} type='number' step='.01'/>
             <label htmlFor='image'>Product Image: </label>
             <input name='image' onChange={handleChange} value={image} />
           </form>
