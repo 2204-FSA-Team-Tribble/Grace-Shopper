@@ -2,37 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setUsers } from '../store/users'
 
-// Placeholder user array
-const testUsers = [
-  {
-    id: 1,
-    firstName: 'Bob',
-    lastName: 'Smith',
-    address: '100 Pine Rd.',
-    username: 'bobthedog',
-    email: 'bobthedog@gmail.com',
-    password: 'ilovedogs1',
-  },
-  {
-    id: 2,
-    firstName: 'Lisa',
-    lastName: 'Frank',
-    address: '311 Oak St.',
-    username: 'lisafrank100',
-    email: 'lisafrank100@gmail.com',
-    password: 'ihatedogs1',
-  },
-  {
-    id: 3,
-    firstName: 'Sarah',
-    lastName: 'Frank',
-    address: '311 Oak St.',
-    username: 'sarahfrank100',
-    email: 'sarahfrank100@gmail.com',
-    password: 'ilovecats1',
-  },
-]
-
 export class AllUsers extends React.Component {
   constructor(props) {
     super(props)

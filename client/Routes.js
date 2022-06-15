@@ -8,6 +8,7 @@ import Products from './components/Products.js';
 import ProductsAdmin from './components/ProductsAdmin.js';
 import CreateProduct from './components/CreateProduct.js'
 import SingleProduct from './components/SingleProduct.js'
+import Cart from './components/Cart.js'
 /**
  * COMPONENT
  */
@@ -29,6 +30,8 @@ class Routes extends Component {
             <Route exact path='/products/:id' component={SingleProduct} />
             <Route path='/productsadmin' component={ProductsAdmin} />
             <Route path='/createProduct' component={CreateProduct} />
+            <Route path='/cart' component={Cart} />
+
           </Switch>
         ) : (
           <Switch>
@@ -39,6 +42,7 @@ class Routes extends Component {
             <Route exact path='/products/:id' component={SingleProduct} />
             <Route path='/productsadmin' component={ProductsAdmin} />
             <Route path='/createProduct' component={CreateProduct} />
+            <Route path='/cart' component={Cart} />
           </Switch>
         )}
       </div>

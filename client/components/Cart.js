@@ -1,15 +1,14 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setCart, _setCart } from '../store/cart'
 
-const items = [
-  { name: 'Dog Romper', price: '20', description: 'Romper for dogs' },
-  { name: 'Hamster Hat', price: '40', description: 'Hat for hamsters' },
-  { name: 'Kitten Mittens', price: '5', description: 'Mittens for cats' },
-]
-
 export class Cart extends React.Component {
+  componentDidMount() {
+    if (this.props.auth.id) {
+      this.props.setCart(this.props.auth.id)
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.auth.id !== this.props.auth.id) {
       if (!this.props.auth.id) {
