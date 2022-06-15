@@ -13,8 +13,12 @@ export class AllUsers extends React.Component {
 
 
   render() {
+    const user = this.props.auth
+
     return (
       <div>
+        {user.isAdmin ? (
+        <div>
         <h3>All Users</h3>
         <table>
           <thead>
@@ -52,6 +56,7 @@ export class AllUsers extends React.Component {
             })}
           </tbody>
         </table>
+        </div>) : (<div><h3>Access Denied</h3></div>)}
       </div>
     )
   }
@@ -59,6 +64,7 @@ export class AllUsers extends React.Component {
 
 const mapState = (state) => ({
   users: state.users,
+  auth: state.auth
 })
 
 const mapDispatch = (dispatch) => ({
