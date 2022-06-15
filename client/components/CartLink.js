@@ -23,7 +23,7 @@ export class CartLink extends React.Component {
   render() {
     const cartQuantity = this.props.cart.length || 0
 
-    return <Link to="/card">{`Shopping Cart (${cartQuantity})`}</Link>
+    return <Link to="/cart">{`Shopping Cart (${cartQuantity})`}</Link>
   }
 }
 

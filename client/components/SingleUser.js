@@ -18,7 +18,7 @@ export class SingleUser extends React.Component {
   }
 
   componentDidMount() {
-    this.props.setUser(1) // CHANGE ID LATER
+    this.props.setUser(this.props.match.params.id) // CHANGE ID LATER
     this.setState({
       id: this.props.user.id,
       firstname: this.props.user.firstname,
