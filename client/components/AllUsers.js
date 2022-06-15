@@ -36,7 +36,7 @@ const AllUsers = () => {
     },
   ]
 
-  // Assign user to state, dispatch will go here
+  // Assign users to state, dispatch will go here
   useEffect(() => {
     setUsers(testUsers)
   }, [])

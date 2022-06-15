@@ -32,6 +32,7 @@ const SingleUser = () => {
 
   return (
     <div>
+      <h3>Edit User</h3>
       <form>
         <div className="input">
           <label htmlFor="firstName">First Name</label>
