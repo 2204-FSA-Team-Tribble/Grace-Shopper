@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GOT_ALL_PRODUCTS} from './actionTypes.js'
+export const GOT_ALL_PRODUCTS = 'GOT_ALL_PRODUCTS';
 
 const initialState = {
   users: [],

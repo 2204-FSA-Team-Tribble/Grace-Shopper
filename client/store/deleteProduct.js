@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { DELETE_PRODUCT } from './actionTypes'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
 
 //action creator
 
