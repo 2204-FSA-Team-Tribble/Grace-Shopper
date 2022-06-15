@@ -15,7 +15,7 @@ const _setUsers = (users) => {
 export const setUsers = () => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(/* API ROUTE */)
+      const {data} = await axios.get('/api/users')
       dispatch(_setUsers(data))
     } catch (error) {
       console.log(error)

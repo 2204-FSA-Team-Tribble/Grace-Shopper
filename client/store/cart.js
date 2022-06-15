@@ -4,7 +4,7 @@ import axios from 'axios'
 const SET_CART = 'SET_CART'
 
 // Action Creator
-const _setCart = (items) => {
+export const _setCart = (items) => {
   return {
     type: SET_CART,
     items
@@ -12,11 +12,11 @@ const _setCart = (items) => {
 }
 
 // Thunk Creator
-export const setCart = (username) => {
+export const setCart = (id) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(/* API ROUTE */)
-      dispatch(_setCart(data))
+      const {data} = await axios.get(`/api/users/${id}`)
+      dispatch(_setCart(data.products))
     } catch (error) {
       console.log(error)
     }
