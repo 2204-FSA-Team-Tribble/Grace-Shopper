@@ -1,6 +1,10 @@
 import axios from 'axios';
 import {GOT_ALL_PRODUCTS} from './actionTypes.js'
-import {initialState} from './intialState.js'
+
+const initialState = {
+  users: [],
+  products: []
+}
 
 //ACTION CREATOR
 export const setProducts = (products) => {
