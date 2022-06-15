@@ -32,11 +32,22 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// router.put('/:id', async (req, res, next) => {
-//   try {
-//     const user = await User.findByPk(req.params.id)
-//     if(req.body.addToCart)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const userId=req.params.id;
+    const user= await User.findByPk(userId, {
+      include:{model:Product}
+    })
+    if (req.body.addToCart){
+      await user.addProduct(req.body.addToCart.productId)
+      res.json(user)
+    }
+    if (req.body.deleteFromCart){
+      await user.removeProduct(req.body.deleteFromCart.productId)
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+

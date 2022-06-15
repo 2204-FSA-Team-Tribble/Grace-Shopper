@@ -20,7 +20,7 @@ const Product = db.define('product', {
     type: Sequelize.ENUM('shirt', 'dress', 'coat', 'swim', 'shoes', 'other'),
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
 });
