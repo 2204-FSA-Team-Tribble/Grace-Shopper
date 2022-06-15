@@ -1,18 +1,6 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setUser, _setUser } from '../store/singleUser'
-
-// Placeholder User
-const testUser = {
-  id: 1,
-  firstname: 'Bob',
-  lastname: 'Smith',
-  address: '100 Pine Rd.',
-  username: 'bobthedog',
-  email: 'bobthedog@gmail.com',
-  password: 'ilovedogs1',
-}
 
 export class SingleUser extends React.Component {
   constructor(props) {
@@ -30,7 +18,7 @@ export class SingleUser extends React.Component {
   }
 
   componentDidMount() {
-    this.props.setUser(1) // CHANGE ID LATER
+    this.props.setUser(this.props.match.params.id) // CHANGE ID LATER
     this.setState({
       id: this.props.user.id,
       firstname: this.props.user.firstname,
