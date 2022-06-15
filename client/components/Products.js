@@ -44,21 +44,3 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapState, mapDispatch)(Products)
 
-// // *** COMPONENT ***
-
-// export const Products = props => {
-//   return (
-//     <div>
-//       <h1>Products</h1>
-//     </div>
-//   )
-// }
-
-// //*** CONTAINER ***
-// const mapState = state => {
-//   return {
-
-//   }
-// }
-
-// export default connect(mapState)(Products)
