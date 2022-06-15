@@ -139,10 +139,8 @@ async function seed() {
     })
   );
 
-
   console.log(`seeded successfully`);
 
-  await users[0].addProducts([products[2], [3]]);
   await users[1].addProducts(products[1]);
   await users[2].addProducts([products[50], [9], [21], [2]]);
   await users[3].addProducts([products[51], [43], [32], [11], [6]]);
