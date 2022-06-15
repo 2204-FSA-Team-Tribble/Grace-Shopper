@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { setUser, _setUser } from '../store/singleUser'
-import Cart from './Cart'
 
 // Placeholder User
 const testUser = {
@@ -136,7 +135,6 @@ export class SingleUser extends React.Component {
             <br />
           )}
         </form>
-        <Cart />
       </div>
     )
   }

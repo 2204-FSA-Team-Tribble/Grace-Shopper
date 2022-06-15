@@ -17,7 +17,7 @@ export class Cart extends React.Component {
     return (
       <div>
         <h3>Shopping Cart</h3>
-        {products.map((item, index) => {
+        {items.map((item, index) => {
           return (
             <div className="cart-item" key={index}>
               <div><img src={`${item.image}`} /></div>
