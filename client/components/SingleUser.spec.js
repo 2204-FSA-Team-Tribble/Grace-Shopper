@@ -10,7 +10,7 @@ import SingleUser from './SingleUser'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe('SingleUser', () => {
+xdescribe('SingleUser', () => {
   let singleUser
 
   beforeEach(() => {
