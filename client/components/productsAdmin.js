@@ -44,12 +44,12 @@ export class ProductsAdmin extends React.Component {
                     }
                   }>X
               </button>
+              <Link to={`/productsadmin/${product.id}`}>
               <button
-                className='update'
-                onClick={() => this.props.updateProduct(this.props.match.params.id)}
               >
                 Update
               </button>
+                </Link>
             </div>
           )
         })}
