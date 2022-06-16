@@ -11,9 +11,21 @@ export class AllUsers extends React.Component {
     this.props.setUsers()
   }
 
-
   render() {
     const user = this.props.auth
+    let allUsers = this.props.users
+
+    // Sort users by Id before displaying
+    function compare(a,b) {
+      if (a.id < b.id) {
+        return -1;
+      }
+      if (a.id > b.id) {
+        return 1
+      }
+      return 0
+    }
+    allUsers.sort(compare)
 
     return (
       <div>
@@ -23,37 +35,34 @@ export class AllUsers extends React.Component {
         <table>
           <thead>
             <tr>
+              <th>Id</th>
               <th>Name</th>
               <th>Address</th>
               <th>Username</th>
               <th>Email</th>
-              <th>Account Type</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {this.props.users.map((user) => {
+            {allUsers.map((user) => {
               return (
                 <tr className="user" key={user.id}>
-                  {/* <td>{`${user.firstname} ${user.lastname}`}</td>
-                  <td>{`${user.address}. ${user.city}, ${user.state}. ${user.zipcode}`}</td> */}
+                  <td>{user.id}</td>
+                  <td>{`${user.firstname} ${user.lastname}`}</td>
+                  <td>{`${user.address}. ${user.city}, ${user.state}. ${user.zipcode}`}</td>
                   <td>{user.username}</td>
-                  {/* <td>{user.email}</td> */}
-                  <td>
-                    {user.isAdmin ? ('True') : ('Null')}
-                  </td>
-                  <td>
-                    <a href="#">Edit</a>
-                  </td>
-                  <td>
-                    <a href="#">Remove</a>
-                  </td>
+                  <td>{user.email}</td>
                 </tr>
-              )
-            })}
-          </tbody>
-        </table>
-        </div>) : (<div><h3>Access Denied</h3></div>)}
+
+                )})}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div>
+            <h3>Access Denied</h3>
+          </div>
+        )}
       </div>
     )
   }
@@ -61,7 +70,7 @@ export class AllUsers extends React.Component {
 
 const mapState = (state) => ({
   users: state.users,
-  auth: state.auth
+  auth: state.auth,
 })
 
 const mapDispatch = (dispatch) => ({

@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setCart, _setCart } from '../store/cart'
+import { setCart, clearCart } from '../store/cart'
 
 export class Cart extends React.Component {
   componentDidMount() {
-    if (this.props.auth.id) {
+    if (!this.props.auth.id) {
+      this.props.clearCart()
+    } else {
       this.props.setCart(this.props.auth.id)
     }
   }
@@ -20,7 +22,7 @@ export class Cart extends React.Component {
   }
 
   render() {
-    const products = this.props.cart || []
+    const products = this.props.cart.products || []
 
     return (
       <div>
@@ -28,7 +30,9 @@ export class Cart extends React.Component {
         {products.map((item, index) => {
           return (
             <div className="cart-item" key={index}>
-              <div><img src={`${item.image}`} /></div>
+              <div>
+                <img src={`${item.image}`} />
+              </div>
               <div>
                 <p>{item.name}</p>
                 <strong>${item.price}</strong>
@@ -51,6 +55,7 @@ export class Cart extends React.Component {
             </div>
           )
         })}
+        <h5>Total: ${this.props.cart.total}</h5>
         <button type="button">Proceed to checkout</button>
       </div>
     )
@@ -59,12 +64,12 @@ export class Cart extends React.Component {
 
 const mapState = (state) => ({
   cart: state.cart,
-  auth: state.auth
+  auth: state.auth,
 })
 
 const mapDispatch = (dispatch) => ({
   setCart: (id) => dispatch(setCart(id)),
-  clearCart: () => dispatch(_setCart([]))
+  clearCart: () => dispatch(clearCart()),
 })
 
 export default connect(mapState, mapDispatch)(Cart)

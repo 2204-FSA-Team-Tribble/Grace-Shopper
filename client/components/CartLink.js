@@ -5,7 +5,9 @@ import { Link, NavLink } from 'react-router-dom';
 
 export class CartLink extends React.Component {
   componentDidMount() {
-    if (this.props.auth.id) {
+    if (!this.props.auth.id) {
+      this.props.clearCart();
+    } else {
       this.props.setCart(this.props.auth.id);
     }
   }
@@ -21,7 +23,7 @@ export class CartLink extends React.Component {
   }
 
   render() {
-    const cartQuantity = this.props.cart.length || 0;
+    const cartQuantity = this.props.cart.products.length || 0;
 
     return (
       <NavLink to="/cart" className="btn btn-outline-primary ms-2">
