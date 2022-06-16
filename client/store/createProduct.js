@@ -10,10 +10,11 @@ const _createProduct = product => {
 }
 
 //thunk creator
-export const createProduct = (product) => {
+export const createProduct = (product, history) => {
   return async (dispatch) => {
     const {data: created} = await axios.post('/api/products', product);
     dispatch(_createProduct(created));
+    history.push('/productsadmin')
   }
 }
 

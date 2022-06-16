@@ -9,6 +9,8 @@ import Products from './components/Products.js';
 import ProductsAdmin from './components/ProductsAdmin.js';
 import CreateProduct from './components/CreateProduct.js';
 import SingleProduct from './components/SingleProduct.js';
+import SingleProductAdmin from './components/SingleProductAdmin.js';
+import SingleUser from './components/SingleUser.js';
 import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
 
@@ -30,9 +32,15 @@ class Routes extends Component {
             <Route path="/" component={Home} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
-            <Route exact path="/users" component={AllUsers} />
-            <Route path="/productsadmin" component={ProductsAdmin} />
+            <Route exact path="/productsadmin" component={ProductsAdmin} />
+            <Route
+              exact
+              path="/productsadmin/:id"
+              component={SingleProductAdmin}
+            />
             <Route path="/createProduct" component={CreateProduct} />
+            <Route exact path="/users" component={AllUsers} />
+            <Route exact path="/users/:id" component={SingleUser} />
             <Route path="/cart" component={Cart} />
           </Switch>
         ) : (
@@ -42,7 +50,12 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
-            <Route path="/productsadmin" component={ProductsAdmin} />
+            <Route exact path="/productsadmin" component={ProductsAdmin} />
+            <Route
+              exact
+              path="/productsadmin/:id"
+              component={SingleProductAdmin}
+            />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
           </Switch>
