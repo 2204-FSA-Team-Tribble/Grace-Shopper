@@ -11,6 +11,7 @@ class SingleProductAdmin extends React.Component {
       id: this.props.product.product.id || '',
       name: this.props.product.product.name || '',
       clothingType: this.props.product.product.clothingType || '',
+      description: this.props.product.product.description || '',
       image: this.props.product.product.image || '',
       petType: this.props.product.product.petType || '',
       price: this.props.product.product.price || undefined,
@@ -27,6 +28,7 @@ class SingleProductAdmin extends React.Component {
           id: this.props.product.product.id || '',
           name: this.props.product.product.name || '',
           clothingType: this.props.product.product.clothingType || '',
+          description: this.props.product.product.description  || '',
           image: this.props.product.product.image || '',
           petType: this.props.product.product.petType || '',
           price: this.props.product.product.price || undefined,
@@ -39,6 +41,7 @@ class SingleProductAdmin extends React.Component {
         id: this.props.product.product.id || '',
         name: this.props.product.product.name || '',
         clothingType: this.props.product.product.clothingType || '',
+        description: this.props.product.product.description  || '',
         image: this.props.product.product.image || '',
         petType: this.props.product.product.petType || '',
         price: this.props.product.product.price || null,
@@ -59,7 +62,7 @@ class SingleProductAdmin extends React.Component {
 
   render() {
     let product = this.props.product.product || {}
-    const { name, clothingType, image, petType, price} = this.state;
+    const { name, clothingType, description, image, petType, price} = this.state;
     const {handleChange, handleSubmit} = this;
     const user = this.props.auth
 
@@ -97,6 +100,8 @@ class SingleProductAdmin extends React.Component {
             <input name='price' onChange={handleChange} value={price} type='number' step='.01'/>
             <label htmlFor='image'>Product Image: </label>
             <input name='image' onChange={handleChange} value={image} />
+            <label htmlFor='description'>Product Description: </label>
+            <input name='description' onChange={handleChange} value={description} />
           </form>
            <img src={image} />
         </div>
