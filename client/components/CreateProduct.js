@@ -69,8 +69,8 @@ export class CreateProduct extends React.Component {
 }
 
 
-const mapDispatch = (dispatch) => ({
-  createProduct: (product) => dispatch(createProduct(product))
+const mapDispatch = (dispatch, {history}) => ({
+  createProduct: (product) => dispatch(createProduct(product, history))
 });
 
 export default connect(null, mapDispatch)(CreateProduct)
