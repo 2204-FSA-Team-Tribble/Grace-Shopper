@@ -10,8 +10,6 @@ import ProductsAdmin from './components/ProductsAdmin.js';
 import CreateProduct from './components/CreateProduct.js'
 import SingleProduct from './components/SingleProduct.js'
 import SingleProductAdmin from './components/SingleProductAdmin.js'
-import CreateProduct from './components/CreateProduct.js';
-import SingleProduct from './components/SingleProduct.js';
 import AllUsers from './components/AllUsers.js';
 import SingleUser from './components/SingleUser.js';
 import Cart from './components/Cart.js';
