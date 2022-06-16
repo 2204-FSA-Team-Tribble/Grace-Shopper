@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../store/products.js'
 import { deleteProduct } from '../store/deleteProduct.js'
+import { history } from 'history';
 import { Link } from 'react-router-dom'
 
 export class ProductsAdmin extends React.Component {
@@ -63,10 +64,10 @@ const mapState = (state) => {
   return {products: state.products};
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {history}) => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
-    deleteProduct: (product) => dispatch(deleteProduct(product))
+    deleteProduct: (product) => dispatch(deleteProduct(product, history))
   }
 }
 
