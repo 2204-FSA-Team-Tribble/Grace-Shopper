@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setCart, _setCart, _setTotal } from '../store/cart'
+import { setCart, clearCart } from '../store/cart'
 
 export class Cart extends React.Component {
   componentDidMount() {
@@ -69,7 +69,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   setCart: (id) => dispatch(setCart(id)),
-  clearCart: () => dispatch(_setCart([], 0)),
+  clearCart: () => dispatch(clearCart()),
 })
 
 export default connect(mapState, mapDispatch)(Cart)

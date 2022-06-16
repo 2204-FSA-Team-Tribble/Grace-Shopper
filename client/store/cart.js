@@ -2,7 +2,7 @@ import axios from 'axios'
 
 // Action Type
 const SET_CART = 'SET_CART'
-const SET_TOTAL = 'SET_TOTAL'
+const CLEAR_CART = 'CLEAR_CART'
 
 // Action Creator
 export const _setCart = (products, total) => {
@@ -13,10 +13,9 @@ export const _setCart = (products, total) => {
   }
 }
 
-export const _setTotal = (total) => {
+export const clearCart = () => {
   return {
-    type: SET_TOTAL,
-    total,
+    type: CLEAR_CART
   }
 }
 
@@ -48,9 +47,9 @@ const initialState = { products: [], total: 0 }
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case SET_CART:
-      return { ...state, products: [...action.products], total: action.total }
-    case SET_TOTAL:
-      return { ...state, total: action.total }
+      return { products: [...action.products], total: action.total }
+    case CLEAR_CART:
+      return { products: [], total: 0}
     default:
       return state
   }
