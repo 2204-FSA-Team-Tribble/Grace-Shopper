@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import { authenticate } from "../store";
+import React from 'react';
+import { connect } from 'react-redux';
+import { authenticate } from '../store';
 
 /**
  * COMPONENT
@@ -47,21 +47,21 @@ const AuthForm = (props) => {
  */
 const mapLogin = (state) => {
   return {
-    name: "login",
-    displayName: "Login",
+    name: 'login',
+    displayName: 'Login',
     error: state.auth.error,
   };
 };
 
-const mapSignup = (state) => {
-  return {
-    name: "signup",
-    displayName: "Sign Up",
-    error: state.auth.error,
-  };
-};
+// const mapSignup = (state) => {
+//   return {
+//     name: 'signup',
+//     displayName: 'Sign Up',
+//     error: state.auth.error,
+//   };
+// };
 
-const mapDispatch = (dispatch) => {
+const mapDispatchLogin = (dispatch) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault();
@@ -73,5 +73,17 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm);
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm);
+// const mapDispatchSignUp = (dispatch) => {
+//   return {
+//     handleSubmit(evt) {
+//       evt.preventDefault();
+//       const formName = evt.target.name;
+//       const username = evt.target.username.value;
+//       const password = evt.target.password.value;
+//       dispatch(authenticate(username, password, formName));
+//     },
+//   };
+// };
+
+export const Login = connect(mapLogin, mapDispatchLogin)(AuthForm);
+// export const Signup = connect(mapSignup, mapDispatchSignUp)(AuthForm);

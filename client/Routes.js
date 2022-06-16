@@ -1,7 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
+<<<<<<< HEAD
 import { Login, Signup } from './components/AuthForm';
+=======
+import { Login } from './components/AuthForm';
+import { Signup } from './components/SignUp';
+>>>>>>> main
 import Home from './components/Home';
 import { me } from './store';
 import Products from './components/Products.js';
@@ -11,7 +16,10 @@ import SingleProduct from './components/SingleProduct.js';
 import AllUsers from './components/AllUsers.js';
 import SingleUser from './components/SingleUser.js';
 import Cart from './components/Cart.js';
+<<<<<<< HEAD
 import Checkout from './components/Checkout';
+=======
+>>>>>>> main
 /**
  * COMPONENT
  */
