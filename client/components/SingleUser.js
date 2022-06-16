@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { setUser, _setUser } from '../store/singleUser'
+import { Link } from 'react-router-dom'
 
 export class SingleUser extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export class SingleUser extends React.Component {
   }
 
   componentDidMount() {
-    this.props.setUser(this.props.match.params.id) // CHANGE ID LATER
+    this.props.setUser(this.props.match.params.id)
     this.setState({
       id: this.props.user.id,
       firstname: this.props.user.firstname,
@@ -49,7 +50,7 @@ export class SingleUser extends React.Component {
   handleChange = (event) => {
     let newValue = event.target.value
     this.setState({
-      [event.target.name]: newValue
+      [event.target.name]: newValue,
     })
   }
 
@@ -57,72 +58,81 @@ export class SingleUser extends React.Component {
     event.preventDefault()
     // Prevent empty username and displays message
     if (!this.state.username) {
-      this.setState({ invalidSubmission: true})
+      this.setState({ invalidSubmission: true })
     } else {
-      this.setState({ invalidSubmission: false})
+      this.setState({ invalidSubmission: false })
       // this.props.updateUser({...this.state})
     }
   }
 
   render() {
-    const { handleChange, handleSubmit } = this;
+    const authUser = this.props.auth
+    const { handleChange, handleSubmit } = this
     const user = this.state
 
     return (
       <div>
-        <h3>Edit User</h3>
-        <form onSubmit={handleSubmit}>
-          <div className="input">
-            <label htmlFor="firstname">First Name</label>
-            <input
-              name="firstname"
-              onChange={handleChange}
-              value={user.firstname || ''}
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="lastname">Last Name</label>
-            <input
-              name="lastname"
-              onChange={handleChange}
-              value={user.lastname || ''}
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="address">Address</label>
-            <input
-              name="address"
-              onChange={handleChange}
-              value={user.address || ''}
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              onChange={handleChange}
-              value={user.username || ''}
-            />
-          </div>
-          <div className="input">
-            <label htmlFor="email">Email</label>
-            <input
-              name="name"
-              onChange={handleChange}
-              type="email"
-              value={user.email || ''}
-            />
-          </div>
+        {authUser.isAdmin ? (
           <div>
-            <button type="submit">Submit</button>
-            <button type="button">Back</button>
+            <h3>Edit User</h3>
+            <form onSubmit={handleSubmit}>
+              <div className="input">
+                <label htmlFor="firstname">First Name</label>
+                <input
+                  name="firstname"
+                  onChange={handleChange}
+                  value={user.firstname || ''}
+                />
+              </div>
+              <div className="input">
+                <label htmlFor="lastname">Last Name</label>
+                <input
+                  name="lastname"
+                  onChange={handleChange}
+                  value={user.lastname || ''}
+                />
+              </div>
+              <div className="input">
+                <label htmlFor="address">Address</label>
+                <input
+                  name="address"
+                  onChange={handleChange}
+                  value={user.address || ''}
+                />
+              </div>
+              <div className="input">
+                <label htmlFor="username">Username</label>
+                <input
+                  name="username"
+                  onChange={handleChange}
+                  value={user.username || ''}
+                />
+              </div>
+              <div className="input">
+                <label htmlFor="email">Email</label>
+                <input
+                  name="name"
+                  onChange={handleChange}
+                  type="email"
+                  value={user.email || ''}
+                />
+              </div>
+              <div>
+                <button type="submit">Submit</button>
+                <Link to="/users"><button type="button">Back</button></Link>
+              </div>
+              {this.state.invalidSubmission ? (
+                <h2>Please enter a username!</h2>
+              ) : (
+                <br />
+              )}
+            </form>
           </div>
-          {this.state.invalidSubmission ? (
-            <h2>Please enter a username!</h2>
-          ) : (
-            <br />
-          )}
-        </form>
+        ) : (
+          <div>
+            <h3>Access Denied</h3>
+          </div>
+        )}
       </div>
     )
   }
@@ -130,6 +140,7 @@ export class SingleUser extends React.Component {
 
 const mapState = (state) => ({
   user: state.user,
+  auth: state.auth,
 })
 
 const mapDispatch = (dispatch) => ({
