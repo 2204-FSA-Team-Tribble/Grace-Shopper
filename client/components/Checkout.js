@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setCart } from '../store/cart';
+import { setUser } from '../store/singleUser';
 import Form from 'react-bootstrap/Form';
 
 let cartPlaceHolder = [
@@ -35,6 +37,25 @@ export default class Checkout extends React.Component {
       cart: cartPlaceHolder,
       user: {},
     };
+  }
+
+  componentDidMount(){
+    if (!this.props.auth.id){
+      this.props.clearCart()
+    } else{
+      this.props.setCart(this.props.auth.id)
+      this.props.setUser(this.props.auth.id)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.auth.id !== this.props.auth.id) {
+      if (!this.props.auth.id) {
+        this.props.clearCart()
+      } else {
+        this.props.setCart(this.props.auth.id)
+      }
+    }
   }
 
   render() {
