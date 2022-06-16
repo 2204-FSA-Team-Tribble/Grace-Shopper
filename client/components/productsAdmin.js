@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../store/products.js'
 import { deleteProduct } from '../store/deleteProduct.js'
-import { history } from 'history';
 import { Link } from 'react-router-dom'
 
 export class ProductsAdmin extends React.Component {
