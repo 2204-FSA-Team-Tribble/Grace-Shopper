@@ -30,7 +30,7 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newProduct = await Product.create(req.body);
-    res.send(newProduct);
+    res.json(newProduct);
   } catch (error) {
     next(error);
   }
@@ -45,3 +45,13 @@ router.put('/:id', async (req, res, next) => {
     next(error);
   }
 });
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const findProduct = await Product.findByPk(req.params.id);
+    await findProduct.destroy()
+    res.send(findProduct);
+  } catch (error) {
+    next(error)
+  }
+})

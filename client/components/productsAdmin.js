@@ -44,12 +44,12 @@ export class ProductsAdmin extends React.Component {
                     }
                   }>X
               </button>
+              <Link to={`/productsadmin/${product.id}`}>
               <button
-                className='update'
-                onClick={() => this.props.updateProduct(this.props.match.params.id)}
               >
                 Update
               </button>
+                </Link>
             </div>
           )
         })}
@@ -63,10 +63,10 @@ const mapState = (state) => {
   return {products: state.products};
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {history}) => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
-    deleteProduct: (product) => dispatch(deleteProduct(product))
+    deleteProduct: (product) => dispatch(deleteProduct(product, history))
   }
 }
 
