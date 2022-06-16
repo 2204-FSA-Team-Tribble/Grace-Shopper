@@ -10,6 +10,7 @@ import ProductsAdmin from './components/ProductsAdmin.js';
 import CreateProduct from './components/CreateProduct.js'
 import SingleProduct from './components/SingleProduct.js'
 import SingleProductAdmin from './components/SingleProductAdmin.js'
+import SingleUser from './components/SingleUser.js'
 import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
 /**
@@ -28,7 +29,6 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Redirect to="/home" />
             <Route exact path='/products' component={Products} />
             <Route exact path='/products/:id' component={SingleProduct} />
             <Route exact path='/productsadmin' component={ProductsAdmin} />

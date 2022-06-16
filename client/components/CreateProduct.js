@@ -31,8 +31,15 @@ export class CreateProduct extends React.Component {
   render() {
     const { name, clothingType, image, petType, price} = this.state;
     const { handleSubmit, handleChange} = this;
+    const user = this.props.auth
     return (
-      <div className="form">
+      <div>
+        {user.isAdmin ? (<div className="form">
+        <Link to='/productsadmin'>
+            <button>
+              Cancel
+            </button>
+          </Link>
         <h1>Create a New Product</h1>
         <div>
           <form id='product-form' onSubmit={handleSubmit}>
@@ -60,17 +67,30 @@ export class CreateProduct extends React.Component {
             <label htmlFor='image'>Product Image: </label>
             <input name='image' onChange={handleChange} value={image} />
           </form>
-           {/* <img src={image} /> */}
+           <img src={image} />
         </div>
 
+      </div>) : (
+          <div>
+            <h1>
+              Access Denied
+            </h1>
+          </div>
+        )}
       </div>
+
     )
   }
 }
 
+const mapState = (state) => {
+  return {
+    auth: state.auth
+  };
+};
 
 const mapDispatch = (dispatch, {history}) => ({
   createProduct: (product) => dispatch(createProduct(product, history))
 });
 
-export default connect(null, mapDispatch)(CreateProduct)
+export default connect(mapState, mapDispatch)(CreateProduct)

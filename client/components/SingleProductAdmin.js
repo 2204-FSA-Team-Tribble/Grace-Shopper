@@ -61,9 +61,11 @@ class SingleProductAdmin extends React.Component {
     let product = this.props.product.product || {}
     const { name, clothingType, image, petType, price} = this.state;
     const {handleChange, handleSubmit} = this;
+    const user = this.props.auth
 
     return (
       <div>
+        {user.isAdmin ? (<div>
         <h1>Update Product</h1>
         <div>
           <Link to='/productsadmin'>
@@ -98,13 +100,24 @@ class SingleProductAdmin extends React.Component {
           </form>
            <img src={image} />
         </div>
+      </div>) : (
+          <div>
+            <h1>
+              Access Denied
+            </h1>
+          </div>
+        ) }
       </div>
+
     )
   }
 }
 
 const mapState = (state) => {
-  return {product: state.singleProduct};
+  return {
+    product: state.singleProduct,
+    auth: state.auth
+  };
 };
 
 const mapDispatch = (dispatch, {history}) => {

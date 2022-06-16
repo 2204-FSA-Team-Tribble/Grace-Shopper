@@ -22,37 +22,46 @@ export class ProductsAdmin extends React.Component {
 
   render() {
     const products = this.props.products.products
+    const user = this.props.auth
     return (
       <div>
-        <h1>Products - Admin</h1>
-        <div>
-            <Link to="/createProduct">
-              <button className="section-button" type='button'>
-                Create a product
-              </button>
-            </Link>
-          </div>
-        {products.map((product) =>{
-          return (
-            <div key={product.id}>
-              <h2>{product.name}</h2>
-              <img src={product.image} />
-              <p>${product.price}</p>
-              <button className='delete' onClick={
-                  (evt) => {
-                      this.handleDelete(product.id);
-                    }
-                  }>X
-              </button>
-              <Link to={`/productsadmin/${product.id}`}>
-              <button
-              >
-                Update
-              </button>
-                </Link>
+        {user.isAdmin ? (
+          <div>
+            <h1>Products - Admin</h1>
+            <div>
+              <Link to="/createProduct">
+                <button className="section-button" type='button'>
+                  Create a product
+                </button>
+              </Link>
             </div>
-          )
-        })}
+            {products.map((product) =>{
+              return (
+                <div key={product.id}>
+                  <h2>{product.name}</h2>
+                  <img src={product.image} />
+                  <p>${product.price}</p>
+                  <button className='delete' onClick={
+                      (evt) => {
+                          this.handleDelete(product.id);
+                        }
+                      }>X
+                  </button>
+                  <Link to={`/productsadmin/${product.id}`}>
+                  <button
+                  >
+                    Update
+                  </button>
+                    </Link>
+                </div>
+              )
+            })}
+          </div>
+        ) :(<div>
+          <h1>Access Denied</h1>
+          </div>
+          )}
+
       </div>
 
     )
@@ -60,7 +69,10 @@ export class ProductsAdmin extends React.Component {
 }
 
 const mapState = (state) => {
-  return {products: state.products};
+  return {
+    products: state.products,
+    auth: state.auth
+  };
 };
 
 const mapDispatch = (dispatch, {history}) => {
