@@ -16,12 +16,13 @@ const _updateProduct = (product) => {
 //thunk creator
 export const updateProduct = (product) => {
   return async (dispatch) => {
-    const {data: updated} = await axios.put(`/api/products/${product.id}`);
+    const {data: updated} = await axios.put(`/api/products/${product.id}`, product);
     dispatch(_updateProduct(updated));
+    console.log(updated)
   }
 }
 
-export default function updateProductReducer (state = {}, action) {
+export default function updateProductReducer (state = [], action) {
   switch (action.type) {
     case UPDATE_PRODUCT:
       return state.map((product) =>

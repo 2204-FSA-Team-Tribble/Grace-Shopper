@@ -7,7 +7,11 @@ export class CreateProduct extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: ''
+      name: '',
+      clothingType: 'shirt',
+      image: '',
+      petType: 'dog',
+      price: undefined,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,27 +29,38 @@ export class CreateProduct extends React.Component {
     this.props.createProduct({...this.state});
   }
   render() {
-    const {name} = this.state;
+    const { name, clothingType, image, petType, price} = this.state;
     const { handleSubmit, handleChange} = this;
     return (
       <div className="form">
         <h1>Create a New Product</h1>
         <div>
-          <form id='create-product' onSubmit={handleSubmit}>
-          <div className="item1">
-            <label htmlFor='create-product'>Product Name: </label>
-            <div>
-              <input name='name' onChange={handleChange} value={name} />
-            </div>
-
-          </div>
-          <div className="item2">
-            <button type='submit'>Submit</button>
-            <Link to='/'>Cancel</Link>
-          </div>
-
+          <form id='product-form' onSubmit={handleSubmit}>
+            <button type='submit'>Save Changes</button>
+            <label htmlFor='name'>Product Name: </label>
+            <input name='name' onChange={handleChange} value={name} />
+            <label htmlFor='clothingType'>Clothing Type: </label>
+            <select name='clothingType' onChange={handleChange} value={clothingType}>
+              <option value='shirt'>shirt</option>
+              <option value='dress'>dress</option>
+              <option value='coat'>coat</option>
+              <option value='swim'>swim</option>
+              <option value='shoes'>shoes</option>
+              <option value='other'>other</option>
+            </select>
+            <label htmlFor='petType'>Pet Type </label>
+            <select name='petType' onChange={handleChange} value={petType}>
+              <option value='dog'>dog</option>
+              <option value='cat'>cat</option>
+              <option value='horse'>horse</option>
+              <option value='other'>other</option>
+            </select>
+            <label htmlFor='price'>Price: </label>
+            <input name='price' onChange={handleChange} value={price} type='number' step='.01'/>
+            <label htmlFor='image'>Product Image: </label>
+            <input name='image' onChange={handleChange} value={image} />
           </form>
-
+           {/* <img src={image} /> */}
         </div>
 
       </div>
@@ -54,7 +69,7 @@ export class CreateProduct extends React.Component {
 }
 
 
-const mapDispatch = (dispatch, {history}) => ({
+const mapDispatch = (dispatch) => ({
   createProduct: (product) => dispatch(createProduct(product))
 });
 
