@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container, Card, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { authenticate } from '../store';
 
@@ -7,34 +8,75 @@ import { authenticate } from '../store';
  */
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
+  // const [userName, setUsename] = useState('')
+  // const [password, setPassword] = useState('')
+  // const error = useSelector (state => state.auth.error)
+  // const dispatch = useDispatch()
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   dispatch(authenticate(userName, password, formName))
+  // }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="email" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+    <>
+      <div className="App">
+        <header className="App-header">
+          <Container>
+            <div className="parent-div">
+              <div className="exampldiv">
+                <Card className="card-style">
+                  <h1 className="login-heading">Login</h1>
+                  <Form
+                    onSubmit={handleSubmit}
+                    name={name}
+                    style={{ margin: '30px' }}
+                  >
+                    <Form.Group className="mb-3" controlId="formBasicUserName">
+                      <Form.Label>Username</Form.Label>
+                      <Form.Control
+                        name="username"
+                        type="username"
+                        placeholder="Username"
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                      />
+                    </Form.Group>
+
+                    <a href="/#" className="forget-link">
+                      Forgot password?
+                    </a>
+                    <Button variant="primary" type="submit" className="button">
+                      {displayName}
+                    </Button>
+                    <div>
+                      {error && error.response && (
+                        <div> {error.response.data} </div>
+                      )}
+                    </div>
+                    <div className="signup-link">
+                      <a
+                        href="/signup"
+                        style={{ textDecoration: 'none', fontSize: '17px' }}
+                      >
+                        Create Account
+                      </a>
+                    </div>
+                  </Form>
+                </Card>
+              </div>
+            </div>
+          </Container>
+        </header>
+      </div>
+    </>
   );
 };
 
@@ -53,14 +95,6 @@ const mapLogin = (state) => {
   };
 };
 
-// const mapSignup = (state) => {
-//   return {
-//     name: 'signup',
-//     displayName: 'Sign Up',
-//     error: state.auth.error,
-//   };
-// };
-
 const mapDispatchLogin = (dispatch) => {
   return {
     handleSubmit(evt) {
@@ -73,17 +107,4 @@ const mapDispatchLogin = (dispatch) => {
   };
 };
 
-// const mapDispatchSignUp = (dispatch) => {
-//   return {
-//     handleSubmit(evt) {
-//       evt.preventDefault();
-//       const formName = evt.target.name;
-//       const username = evt.target.username.value;
-//       const password = evt.target.password.value;
-//       dispatch(authenticate(username, password, formName));
-//     },
-//   };
-// };
-
 export const Login = connect(mapLogin, mapDispatchLogin)(AuthForm);
-// export const Signup = connect(mapSignup, mapDispatchSignUp)(AuthForm);
