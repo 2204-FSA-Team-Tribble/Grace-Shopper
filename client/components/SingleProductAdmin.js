@@ -66,6 +66,11 @@ class SingleProductAdmin extends React.Component {
       <div>
         <h1>Update Product</h1>
         <div>
+          <Link to='/productsadmin'>
+            <button>
+              Cancel
+            </button>
+          </Link>
           <form id='product-form' onSubmit={handleSubmit}>
             <button type='submit'>Save Changes</button>
             <label htmlFor='name'>Product Name: </label>
@@ -102,9 +107,9 @@ const mapState = (state) => {
   return {product: state.singleProduct};
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, {history}) => {
   return {
-    updateProduct: (product) => dispatch(updateProduct(product)),
+    updateProduct: (product) => dispatch(updateProduct(product, history)),
     fetchProduct: (id) => dispatch(fetchProduct(id))
   }
 }

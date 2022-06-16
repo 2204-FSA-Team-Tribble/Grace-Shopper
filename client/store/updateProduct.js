@@ -14,11 +14,11 @@ const _updateProduct = (product) => {
 }
 
 //thunk creator
-export const updateProduct = (product) => {
+export const updateProduct = (product, history) => {
   return async (dispatch) => {
     const {data: updated} = await axios.put(`/api/products/${product.id}`, product);
     dispatch(_updateProduct(updated));
-    console.log(updated)
+    history.push('/productsadmin')
   }
 }
 
