@@ -12,6 +12,7 @@ import SingleProduct from './components/SingleProduct.js';
 import AllUsers from './components/AllUsers.js';
 import SingleUser from './components/SingleUser.js';
 import Cart from './components/Cart.js';
+import Landing from './components/Landing';
 /**
  * COMPONENT
  */
@@ -35,10 +36,11 @@ class Routes extends Component {
             <Route path="/productsadmin" component={ProductsAdmin} />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
+            <Route path="/" component={Landing} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
