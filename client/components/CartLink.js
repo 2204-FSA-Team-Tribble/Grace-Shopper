@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 
 export class CartLink extends React.Component {
   componentDidMount() {
-    if (this.props.auth.id) {
+    if (!this.props.auth.id) {
+      this.props.clearCart()
+    } else {
       this.props.setCart(this.props.auth.id)
     }
   }
