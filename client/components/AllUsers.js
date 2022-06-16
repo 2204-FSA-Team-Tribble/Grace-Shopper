@@ -11,7 +11,6 @@ export class AllUsers extends React.Component {
     this.props.setUsers()
   }
 
-
   render() {
     const user = this.props.auth
     let allUsers = this.props.users
@@ -54,11 +53,16 @@ export class AllUsers extends React.Component {
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                 </tr>
-              )
-            })}
-          </tbody>
-        </table>
-        </div>) : (<div><h3>Access Denied</h3></div>)}
+
+                )})}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div>
+            <h3>Access Denied</h3>
+          </div>
+        )}
       </div>
     )
   }
@@ -66,7 +70,7 @@ export class AllUsers extends React.Component {
 
 const mapState = (state) => ({
   users: state.users,
-  auth: state.auth
+  auth: state.auth,
 })
 
 const mapDispatch = (dispatch) => ({
