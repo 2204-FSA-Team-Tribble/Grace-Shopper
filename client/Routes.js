@@ -1,25 +1,26 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
-<<<<<<< HEAD
-import { Login, Signup } from './components/AuthForm';
-=======
 import { Login } from './components/AuthForm';
 import { Signup } from './components/SignUp';
->>>>>>> main
 import Home from './components/Home';
 import { me } from './store';
 import Products from './components/Products.js';
 import ProductsAdmin from './components/ProductsAdmin.js';
 import CreateProduct from './components/CreateProduct.js';
 import SingleProduct from './components/SingleProduct.js';
-import AllUsers from './components/AllUsers.js';
+import SingleProductAdmin from './components/SingleProductAdmin.js';
 import SingleUser from './components/SingleUser.js';
+import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
+<<<<<<< HEAD
 <<<<<<< HEAD
 import Checkout from './components/Checkout';
 =======
 >>>>>>> main
+=======
+
+>>>>>>> origin
 /**
  * COMPONENT
  */
@@ -35,23 +36,33 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
+            <Route exact path="/productsadmin" component={ProductsAdmin} />
+            <Route
+              exact
+              path="/productsadmin/:id"
+              component={SingleProductAdmin}
+            />
+            <Route path="/createProduct" component={CreateProduct} />
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/users/:id" component={SingleUser} />
-            <Route path="/productsadmin" component={ProductsAdmin} />
-            <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
           </Switch>
         ) : (
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
-            <Route path="/productsadmin" component={ProductsAdmin} />
+            <Route exact path="/productsadmin" component={ProductsAdmin} />
+            <Route
+              exact
+              path="/productsadmin/:id"
+              component={SingleProductAdmin}
+            />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
