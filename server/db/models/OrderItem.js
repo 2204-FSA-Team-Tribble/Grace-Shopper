@@ -7,7 +7,7 @@ const OrderItem = db.define('orderItem', {
     defaultValue: 1,
   },
 
-  //May delete these once associations are set properly
+  //May delete if associations are updated... will keep same field names though
   price: {
     type: Sequelize.FLOAT,
     allowNull: false,

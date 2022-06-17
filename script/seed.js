@@ -2,9 +2,12 @@
 
 const {
   db,
-  models: { User, Product },
+  models: { User, Product, Order, OrderItem },
 } = require('../server/db');
 const productSeed = require('./ProductSeed');
+const OrderItemSeed = require('./orderItemSeed');
+const OrderSeed = require('./orderSeed');
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -139,23 +142,37 @@ async function seed() {
     })
   );
 
+  const orderItems = await Promise.all(
+    OrderItemSeed.map((item) => {
+      return OrderItem.create(item);
+    })
+  );
+
+  const orders = await Promise.all(
+    OrderSeed.map((item) => {
+      return Order.create(item);
+    })
+  );
+
+  await users[7].addOrder(orders[1]);
+  await users[0].addOrder(orders[0]);
+  await users[9].addOrder(orders[2]);
+  await orders[0].addOrderItem(orderItems[0]);
+  await orders[1].addOrderItem(orderItems[1]);
+  await orders[2].addOrderItem(orderItems[2]);
+  await orders[0].addOrderItem(orderItems[3]);
+  await orders[2].addOrderItem(orderItems[4]);
+  await orders[0].addOrderItem(orderItems[5]);
+  await orders[2].addOrderItem(orderItems[6]);
+  await products[1].addOrderItem(orderItems[0]);
+  await products[1].addOrderItem(orderItems[1]);
+  await products[1].addOrderItem(orderItems[2]);
+  await products[5].addOrderItem(orderItems[3]);
+  await products[0].addOrderItem(orderItems[4]);
+  await products[3].addOrderItem(orderItems[5]);
+  await products[4].addOrderItem(orderItems[6]);
+
   console.log(`seeded successfully`);
-
-  await users[1].addProducts(products[1]);
-  await users[2].addProducts([products[50], [9], [21], [2]]);
-  await users[3].addProducts([products[51], [43], [32], [11], [6]]);
-  await users[4].addProducts([products[1], [45], [44]]);
-  await users[5].addProducts([products[4], [6], [9], [29]]);
-  await users[6].addProducts([products[15], [19], [31]]);
-  await users[7].addProducts([products[1], [43], [55], [46], [47]]);
-  await users[8].addProducts([products[26], [37]]);
-
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
-  };
 }
 
 /*

@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const db = require('../db');
 
 const Order = db.define('order', {
+  //Total will likely be deleted from this file once associations are set in API routes. Will keep the field the same name
   total: {
     type: Sequelize.FLOAT,
   },
@@ -28,21 +29,6 @@ const Order = db.define('order', {
   },
   zipcode: {
     type: Sequelize.INTEGER,
-  },
-
-  //May delete these once associations are set properly
-  price: {
-    type: Sequelize.FLOAT,
-    allowNull: false,
-  },
-  totalPrice: {
-    type: Sequelize.VIRTUAL,
-    get() {
-      return this.price * this.quantity;
-    },
-    set(value) {
-      throw new Error('Do not try to override the totalPrice');
-    },
   },
 });
 
