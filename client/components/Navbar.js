@@ -2,13 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../store';
-import { useSelector } from 'react-redux';
-
 import CartLink from './CartLink';
 
 const Navbar = ({ handleClick, isLoggedIn }) => {
   return (
-    // const state = useSelector((state) => state.cart)
     <div>
       <nav>
         {isLoggedIn ? (
@@ -65,7 +62,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                     <NavLink
                       to="/login"
                       onClick={handleClick}
-                      className="btn btn-outline-primary ms-2"
+                      className="btn btn-outline-secondary ms-2"
                     >
                       <i className="fa fa-user-plus me-1"></i>
                       Logout
@@ -127,12 +124,12 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                   </ul>
 
                   <div className="button">
-                    <NavLink to="/login" className="btn btn-outline-primary">
+                    <NavLink to="/login" className="btn btn-outline-secondary">
                       <i className="fa fa-sign-in me-1"></i>Login
                     </NavLink>
                     <NavLink
                       to="/signup"
-                      className="btn btn-outline-primary ms-2"
+                      className="btn btn-outline-secondary ms-2"
                     >
                       <i className="fa fa-user-plus me-1"></i>Signup
                     </NavLink>

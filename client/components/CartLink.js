@@ -26,7 +26,7 @@ export class CartLink extends React.Component {
     const cartQuantity = this.props.cart.products.length || 0;
 
     return (
-      <NavLink to="/cart" className="btn btn-outline-primary ms-2">
+      <NavLink to="/cart" className="btn btn-outline-secondary ms-2">
         <i className="fa fa-shopping-cart me-1"></i>
         {`Cart (${cartQuantity})`}
       </NavLink>

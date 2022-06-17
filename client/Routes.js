@@ -13,6 +13,7 @@ import SingleProductAdmin from './components/SingleProductAdmin.js';
 import SingleUser from './components/SingleUser.js';
 import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
+import About from './components/About';
 
 /**
  * COMPONENT
@@ -29,7 +30,8 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/productsadmin" component={ProductsAdmin} />
@@ -46,6 +48,7 @@ class Routes extends Component {
         ) : (
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route exact path="/about" component={About} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
