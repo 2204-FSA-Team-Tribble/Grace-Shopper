@@ -154,23 +154,24 @@ async function seed() {
     })
   );
 
-  await users[7].addOrder(orders[1]);
-  await users[0].addOrder(orders[0]);
-  await users[9].addOrder(orders[2]);
-  await orders[0].addOrderItem(orderItems[0]);
-  await orders[1].addOrderItem(orderItems[1]);
-  await orders[2].addOrderItem(orderItems[2]);
-  await orders[0].addOrderItem(orderItems[3]);
-  await orders[2].addOrderItem(orderItems[4]);
-  await orders[0].addOrderItem(orderItems[5]);
-  await orders[2].addOrderItem(orderItems[6]);
-  await products[1].addOrderItem(orderItems[0]);
-  await products[1].addOrderItem(orderItems[1]);
-  await products[1].addOrderItem(orderItems[2]);
-  await products[5].addOrderItem(orderItems[3]);
-  await products[0].addOrderItem(orderItems[4]);
-  await products[3].addOrderItem(orderItems[5]);
-  await products[4].addOrderItem(orderItems[6]);
+  await orders[1].setUser(users[7]);
+  await orders[0].setUser(users[0]);
+  await orders[2].setUser(users[9]);
+  await orderItems[0].setOrder(orders[0]);
+  await orderItems[1].setOrder(orders[1]);
+  await orderItems[2].setOrder(orders[2]);
+  await orderItems[3].setOrder(orders[0]);
+  await orderItems[4].setOrder(orders[2]);
+  await orderItems[5].setOrder(orders[0]);
+  await orderItems[6].setOrder(orders[2]);
+  console.log(orders[0].__proto__);
+  await orderItems[0].setProduct(products[1]);
+  await orderItems[1].setProduct(products[1]);
+  await orderItems[2].setProduct(products[1]);
+  await orderItems[3].setProduct(products[5]);
+  await orderItems[4].setProduct(products[0]);
+  await orderItems[5].setProduct(products[3]);
+  await orderItems[6].setProduct(products[4]);
 
   console.log(`seeded successfully`);
 }

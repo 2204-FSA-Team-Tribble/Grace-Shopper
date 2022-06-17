@@ -29,8 +29,7 @@ let cartPlaceHolder = [
 ];
 //Make sure to pass the isLoggedIn into the props.
 
-export default class Checkout extends React.Component {
-
+export class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,21 +38,21 @@ export default class Checkout extends React.Component {
     };
   }
 
-  componentDidMount(){
-    if (!this.props.auth.id){
-      this.props.clearCart()
-    } else{
-      this.props.setCart(this.props.auth.id)
-      this.props.setUser(this.props.auth.id)
+  componentDidMount() {
+    if (!this.props.auth.id) {
+      this.props.clearCart();
+    } else {
+      this.props.setCart(this.props.auth.id);
+      this.props.setUser(this.props.auth.id);
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.auth.id !== this.props.auth.id) {
       if (!this.props.auth.id) {
-        this.props.clearCart()
+        this.props.clearCart();
       } else {
-        this.props.setCart(this.props.auth.id)
+        this.props.setCart(this.props.auth.id);
       }
     }
   }
@@ -63,7 +62,7 @@ export default class Checkout extends React.Component {
       <div>
         <h3>Checkout Page</h3>
       </div>
-    /*
+      /*
          FEATURES FOR THIS PAGE
          Show the list of XitemsX, total.
          Field to enter Address (populated with address if logged in)
@@ -71,7 +70,7 @@ export default class Checkout extends React.Component {
          Submit button that gives a "You did it" pop up
         */
 
-    /* {cart.map((item, index) => {
+      /* {cart.map((item, index) => {
             return (
               <div className="cart-item" key={index}>
                 <img src={item.image} />
@@ -103,4 +102,3 @@ const mapDispatch = (dispatch) => ({
 });
 
 export default connect(mapState, mapDispatch)(Checkout);
-

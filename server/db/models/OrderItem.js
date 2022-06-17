@@ -21,6 +21,7 @@ const OrderItem = db.define('orderItem', {
       throw new Error('Do not try to override the totalPrice');
     },
   },
+  
 });
 
 module.exports = OrderItem;

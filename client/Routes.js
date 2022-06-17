@@ -13,14 +13,8 @@ import SingleProductAdmin from './components/SingleProductAdmin.js';
 import SingleUser from './components/SingleUser.js';
 import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import Checkout from './components/Checkout';
-=======
->>>>>>> main
-=======
 
->>>>>>> origin
 /**
  * COMPONENT
  */
