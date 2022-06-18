@@ -1,14 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { setUsers } from '../store/users'
+import { deleteUser } from '../store/deleteUser.js'
+import { Link } from 'react-router-dom'
 
 export class AllUsers extends React.Component {
   constructor(props) {
     super(props)
+
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   componentDidMount() {
     this.props.setUsers()
+  }
+
+  handleDelete(id) {
+    this.props.deleteUser(id)
   }
 
   render() {
@@ -55,8 +63,18 @@ export class AllUsers extends React.Component {
                     <td>{`${user.address}. ${user.city}, ${user.state}. ${user.zipcode}`}</td>
                     <td>{user.username}</td>
                     <td>{user.email}</td>
-                    <td><button className="btn btn-sm btn-block btn-danger">Delete</button></td>
-                    <td><button className="btn btn-sm btn-block btn-success">Update</button></td>
+                    <td>
+                      <button className="btn btn-sm btn-block btn-danger" onClick={
+                      (evt) => {
+                          this.handleDelete(user.id);
+                        }
+                      }>Delete</button>
+                    </td>
+                    <td>
+                      <Link to={`/users/${user.id}`}>
+                        <button className="btn btn-sm btn-block btn-success">Update</button>
+                      </Link>
+                    </td>
                   </tr>
 
                   )})}
@@ -78,8 +96,9 @@ const mapState = (state) => ({
   auth: state.auth,
 })
 
-const mapDispatch = (dispatch) => ({
+const mapDispatch = (dispatch, {history}) => ({
   setUsers: () => dispatch(setUsers()),
+  deleteUser: (user) => dispatch(deleteUser(user, history))
 })
 
 export default connect(mapState, mapDispatch)(AllUsers)

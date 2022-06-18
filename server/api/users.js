@@ -59,3 +59,13 @@ router.put('/:id', async (req, res, next) => {
     next(error);
   }
 });
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const findUser = await User.findByPk(req.params.id);
+    await findUser.destroy()
+    res.send(findUser);
+  } catch (error) {
+    next(error)
+  }
+})
