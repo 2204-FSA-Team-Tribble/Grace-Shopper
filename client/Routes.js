@@ -14,6 +14,7 @@ import SingleUser from './components/SingleUser.js';
 import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
 import About from './components/About';
+import AdminHome from './components/AdminHome.js'
 
 /**
  * COMPONENT
@@ -33,7 +34,7 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
 
             <Route exact path="/about" component={About} />
-
+            <Route exact path="/adminhome" component={AdminHome} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/productsadmin" component={ProductsAdmin} />
@@ -51,6 +52,7 @@ class Routes extends Component {
           <Switch>
 
             <Route exact path="/about" component={About} />
+
 
             <Route exact path="/" component={Home} />
 
