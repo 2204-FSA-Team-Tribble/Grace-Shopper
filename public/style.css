@@ -71,3 +71,7 @@ a {
   margin: -15px 0px 10px;
   font-size: 17px;
 }
+
+.container {
+  padding-bottom: 12px;
+}
