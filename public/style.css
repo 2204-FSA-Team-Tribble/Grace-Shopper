@@ -75,3 +75,12 @@ a {
 .container {
   padding-bottom: 12px;
 }
+
+.admin-top {
+  display: flex;
+  align-items: center;
+}
+
+.admin-right-button {
+  float: right;
+}

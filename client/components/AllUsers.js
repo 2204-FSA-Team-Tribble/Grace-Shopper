@@ -28,34 +28,39 @@ export class AllUsers extends React.Component {
     allUsers.sort(compare)
 
     return (
-      <div>
+      <div className='container'>
         {user.isAdmin ? (
-        <div>
-        <h3>All Users</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {allUsers.map((user) => {
-              return (
-                <tr className="user" key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{`${user.firstname} ${user.lastname}`}</td>
-                  <td>{`${user.address}. ${user.city}, ${user.state}. ${user.zipcode}`}</td>
-                  <td>{user.username}</td>
-                  <td>{user.email}</td>
-                </tr>
+          <div className="table-responsive">
+            <div className='row admin-top'>
+              <div className='col'><h1>All Users</h1></div>
+              <div className='col'><button className="btn btn-md btn-block btn-primary admin-right-button">Create New User</button></div>
+            </div>
+            <table className="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {allUsers.map((user) => {
+                return (
+                  <tr className="user" key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{`${user.firstname} ${user.lastname}`}</td>
+                    <td>{`${user.address}. ${user.city}, ${user.state}. ${user.zipcode}`}</td>
+                    <td>{user.username}</td>
+                    <td>{user.email}</td>
+                    <td><button className="btn btn-sm btn-block btn-danger">Delete</button></td>
+                    <td><button className="btn btn-sm btn-block btn-success">Update</button></td>
+                  </tr>
 
-                )})}
-              </tbody>
+                  )})}
+                </tbody>
             </table>
           </div>
         ) : (
