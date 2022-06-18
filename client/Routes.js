@@ -15,6 +15,7 @@ import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
 import About from './components/About';
 import AdminHome from './components/AdminHome.js'
+import LoginRedirect from './components/LoginRedirect.js'
 
 /**
  * COMPONENT
@@ -35,6 +36,7 @@ class Routes extends Component {
 
             <Route exact path="/about" component={About} />
             <Route exact path="/adminhome" component={AdminHome} />
+            <Route exact path="/loginredirect" component={LoginRedirect} />
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/productsadmin" component={ProductsAdmin} />
