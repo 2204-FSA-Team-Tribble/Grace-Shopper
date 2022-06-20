@@ -85,7 +85,6 @@ export const addProduct = (userId, product) => {
         productId: product.id,
         orderId: activeOrderId
       }
-      console.log(product.price)
       const { data } = await axios.post(`/api/orderitems/${activeOrderId}`, newItem)
       dispatch(_addProduct(data))
     } catch (error) {

@@ -3,11 +3,6 @@ import { connect } from 'react-redux'
 import { setCart, clearCart, removeProduct } from '../store/cart'
 
 export class Cart extends React.Component {
-    // constructor(props) {
-    //   super(props)
-    //   this.handleRemove = this.handleRemove.bind(this)
-    // }
-
     componentDidMount() {
     if (!this.props.auth.id) {
       this.props.clearCart()
@@ -25,12 +20,6 @@ export class Cart extends React.Component {
       }
     }
   }
-
-  // handleRemove(id) {
-  //   this.props.removeProduct(id)
-  //   this.props.setCart(this.props.auth.id)
-  // }
-
 
   render() {
     const products = this.props.cart.products || []
