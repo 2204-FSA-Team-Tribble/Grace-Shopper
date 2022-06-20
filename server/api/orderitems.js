@@ -45,7 +45,7 @@ router.post('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/;id', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const item = await OrderItem.findByPk(req.params.id);
     await item.update(req.body);

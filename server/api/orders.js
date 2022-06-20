@@ -14,24 +14,24 @@ router.get('/', async (req, res, next) => {
 });
 
 //use this route if the cart is empty/order has not been created. Create order, then create orderItem
-router.post('/', async(req, rew,next)=>{
-
+router.post('/', async (req, res, next) => {
   try {
-    const newOrder= await Order.create(req.body)
-    res.json(newOrder)
+    const newOrder = await Order.create(req.body);
+    res.json(newOrder);
   } catch (error) {
-    next (error)
+    next(error);
   }
-  })
+});
 
 //find order by Id, includes orderitems and user info
 router.get('/:id', async (req, res, next) => {
   try {
-    const orderId=req.params.id
-    const order = await Order.findByPk({ include: [OrderItem, User] });
+    const orderId = req.params.id;
+    const order = await Order.findByPk({
+      include: [User, { model: OrderItem, include: [Product] }],
+    });
     res.json(order);
   } catch (err) {
     next(err);
   }
 });
-
