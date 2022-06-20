@@ -19,7 +19,6 @@ class SingleProduct extends React.Component {
 
   render() {
     let product = this.props.product.product || {};
-
     const Loading = () => {
       return <>Loading....</>;
     };
