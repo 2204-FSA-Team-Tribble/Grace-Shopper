@@ -89,9 +89,6 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
-//
-=======
 router.put('/update/:id', async (req, res ,next) => {
   try {
     const findUser = await User.findByPk(req.params.id);
@@ -102,7 +99,6 @@ router.put('/update/:id', async (req, res ,next) => {
   }
 })
 
->>>>>>> main
 router.put('/:id', async (req, res, next) => {
   try {
     const userId = req.params.id;

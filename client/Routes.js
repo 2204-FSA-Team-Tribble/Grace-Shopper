@@ -84,14 +84,10 @@ class Routes extends Component {
             />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
-<<<<<<< HEAD
-            {/* <Route path="/checkout" component={Checkout} /> */}
-=======
             <Route path="/dog" component={Dog} />
             <Route path="/cat" component={Cat} />
             <Route path="/horse" component={Horse} />
             <Route path="/other" component={Other} />
->>>>>>> main
           </Switch>
         )}
       </div>
