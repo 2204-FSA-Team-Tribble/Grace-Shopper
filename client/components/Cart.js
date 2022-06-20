@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setCart, clearCart } from '../store/cart'
+import { setCart, clearCart, removeProduct } from '../store/cart'
 
 export class Cart extends React.Component {
-  componentDidMount() {
+    componentDidMount() {
     if (!this.props.auth.id) {
       this.props.clearCart()
     } else {
@@ -50,7 +50,7 @@ export class Cart extends React.Component {
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-                <button type="button">Remove</button>
+                <button type="button" onClick={() => this.props.removeProduct(item.id)}>Remove</button>
               </div>
             </div>
           )
@@ -70,6 +70,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   setCart: (id) => dispatch(setCart(id)),
   clearCart: () => dispatch(clearCart()),
+  removeProduct: (id) => dispatch(removeProduct(id))
 })
 
 export default connect(mapState, mapDispatch)(Cart)
