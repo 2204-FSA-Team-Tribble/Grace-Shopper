@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { setUser, _setUser } from '../store/singleUser'
+import { updateUser } from '../store/updateUser'
 import { Link } from 'react-router-dom'
 
 export class SingleUser extends React.Component {
@@ -16,6 +17,7 @@ export class SingleUser extends React.Component {
       invalidSubmission: false,
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -56,13 +58,7 @@ export class SingleUser extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    // Prevent empty username and displays message
-    if (!this.state.username) {
-      this.setState({ invalidSubmission: true })
-    } else {
-      this.setState({ invalidSubmission: false })
-      // this.props.updateUser({...this.state})
-    }
+    this.props.updateUser({...this.props.user, ...this.state})
   }
 
   render() {
@@ -143,9 +139,9 @@ const mapState = (state) => ({
   auth: state.auth,
 })
 
-const mapDispatch = (dispatch) => ({
+const mapDispatch = (dispatch, {history}) => ({
   setUser: (id) => dispatch(setUser(id)),
-  // updateUser: (id) => dispatch(updateUser(id)),
+  updateUser: (user) => dispatch(updateUser(user, history)),
   clearUser: () => _setUser({}),
 })
 
