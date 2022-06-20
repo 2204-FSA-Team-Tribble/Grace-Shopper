@@ -14,11 +14,16 @@ import SingleUser from './components/SingleUser.js';
 import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
 import About from './components/About';
+
 import Contact from './components/Contact';
 import Dog from './components/Pets/Dog.js';
 import Cat from './components/Pets/Cat';
 import Horse from './components/Pets/Horse';
 import Other from './components/Pets/Other';
+
+import AdminHome from './components/AdminHome.js'
+import LoginRedirect from './components/LoginRedirect.js'
+
 
 /**
  * COMPONENT
@@ -38,7 +43,12 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
 
             <Route exact path="/about" component={About} />
+
             <Route exact path="/contact" component={Contact} />
+
+          <Route exact path="/adminhome" component={AdminHome} />
+            <Route exact path="/loginredirect" component={LoginRedirect} />
+
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/productsadmin" component={ProductsAdmin} />
@@ -58,6 +68,7 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
+
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
