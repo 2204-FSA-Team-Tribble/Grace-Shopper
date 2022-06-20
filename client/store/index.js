@@ -15,7 +15,6 @@ import updateProductReducer from './updateProduct'
 const reducer = combineReducers({
   auth: auth,
   users: users,
-  user: user,
   cart: cart,
   products: productsReducer,
   deleteProduct: deleteProductReducer,
