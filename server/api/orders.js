@@ -4,6 +4,8 @@ const {
 } = require('../db');
 module.exports = router;
 
+//in api/orders
+
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({ include: [OrderItem, User] });
@@ -27,8 +29,8 @@ router.post('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const orderId = req.params.id;
-    const order = await Order.findByPk({
-      include: [User, { model: OrderItem, include: [Product] }],
+    const order = await Order.findByPk(orderId, {
+      include: [User],
     });
     res.json(order);
   } catch (err) {

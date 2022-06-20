@@ -49,7 +49,6 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-
             <Route exact path="/about" component={About} />
 
             <Route exact path="/" component={Home} />
@@ -66,7 +65,7 @@ class Routes extends Component {
             />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
-            <Route path="/checkout" component={Checkout} />
+            {/* <Route path="/checkout" component={Checkout} /> */}
           </Switch>
         )}
       </div>
