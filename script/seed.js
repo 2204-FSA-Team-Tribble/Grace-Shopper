@@ -164,7 +164,6 @@ async function seed() {
   await orderItems[4].setOrder(orders[2]);
   await orderItems[5].setOrder(orders[0]);
   await orderItems[6].setOrder(orders[2]);
-  console.log(orders[0].__proto__);
   await orderItems[0].setProduct(products[1]);
   await orderItems[1].setProduct(products[1]);
   await orderItems[2].setProduct(products[1]);
@@ -172,6 +171,13 @@ async function seed() {
   await orderItems[4].setProduct(products[0]);
   await orderItems[5].setProduct(products[3]);
   await orderItems[6].setProduct(products[4]);
+  await orderItems[0].setUser(users[0]);
+  await orderItems[1].setUser(users[7]);
+  await orderItems[2].setUser(users[0]);
+  await orderItems[3].setUser(users[0]);
+  await orderItems[4].setUser(users[9]);
+  await orderItems[5].setUser(users[0]);
+  await orderItems[6].setUser(users[9]);
 
   console.log(`seeded successfully`);
 }
