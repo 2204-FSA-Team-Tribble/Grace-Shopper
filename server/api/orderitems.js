@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Product, OrderItem, Order },
+  models: { Product, OrderItem, Order, User },
 } = require('../db');
 module.exports = router;
 
@@ -32,7 +32,7 @@ router.get('/:id', async (req, res, next) => {
 //need an orderId for this to function (send to the orders post first, pull that info, then come back here)
 router.post('/:id', async (req, res, next) => {
   try {
-    const newItem = await OrderItem.create(req.body);
+    const newItem = await OrderItem.create(req.body.product);
     const user = await User.findByPk(req.body.userId);
     const product = await Product.findByPk(req.body.productId);
     const order = await Order.findByPk(req.body.orderId);
