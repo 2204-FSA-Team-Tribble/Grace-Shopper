@@ -16,7 +16,7 @@ export class LoginRedirect extends React.Component {
           <Redirect to='/adminhome' />
         ) : (
           <div>
-            <h1>Hello User</h1>
+            <Redirect to='/products' />
           </div>
         )}
       </div>
