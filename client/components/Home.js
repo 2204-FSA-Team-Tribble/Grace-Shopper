@@ -1,5 +1,6 @@
 import React from 'react';
 import Products from './Products';
+import FilterProducts from './filterProducts';
 
 const Home = () => {
   return (
@@ -19,7 +20,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Products />
+      <FilterProducts />
     </div>
   );
 };
