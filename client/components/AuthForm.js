@@ -53,7 +53,11 @@ const AuthForm = (props) => {
                     <a href="/#" className="forget-link">
                       Forgot password?
                     </a>
-                    <Button variant="primary" type="submit" className="button">
+                    <Button
+                      variant="secondary"
+                      type="submit"
+                      className="button"
+                    >
                       {displayName}
                     </Button>
                     <div>
