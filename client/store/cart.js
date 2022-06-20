@@ -5,6 +5,7 @@ const SET_CART = 'SET_CART'
 const CLEAR_CART = 'CLEAR_CART'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
+const MODIFY_PRODUCT = 'MODIFY_PRODUCT'
 
 // Action Creator
 export const _setCart = (products, total) => {
@@ -31,6 +32,13 @@ export const _addProduct = (product) => {
 export const _removeProduct = (product) => {
   return {
     type: REMOVE_PRODUCT,
+    product
+  }
+}
+
+export const _modifyProduct = (product) => {
+  return {
+    type: MODIFY_PRODUCT,
     product
   }
 }
@@ -71,8 +79,19 @@ export const addProduct = (userId, productId) => {
 export const removeProduct = (userId, productId) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.put(/* API ROUTE */)
+      const {data} = await axios.delete(/* API ROUTE */)
       dispatch(_removeProduct(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const modifyProduct = (productId, quantity) => {
+  return async (dispatch) => {
+    try {
+      const {data} = await axios.put(/* API ROUTE */)
+      dispatch (_modifyProduct(data))
     } catch (error) {
       console.log(error)
     }

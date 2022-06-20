@@ -1,5 +1,6 @@
 import React from 'react';
 import { fetchProduct } from '../store/singleProduct.js';
+import { addProduct } from '../store/cart.js'
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -40,7 +41,7 @@ class SingleProduct extends React.Component {
             <p className="lead">{product.description}</p>
             <button
               className="btn btn-outline-secondary px-4 py-2"
-              onClick={() => addProduct(product)}
+              onClick={() => addProduct(product.id)}
             >
               Add to Cart
             </button>
@@ -71,6 +72,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchProduct: (id) => dispatch(fetchProduct(id)),
+    addProduct: (id) => dispatch(addProduct(id))
   };
 };
 
