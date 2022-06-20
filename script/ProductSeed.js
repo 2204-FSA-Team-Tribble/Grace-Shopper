@@ -413,17 +413,14 @@ const productSeed = [
     clothingType: 'shirt',
     price: 12.21,
   },
-
 ];
 
 module.exports = productSeed;
 
-
-let template= {
+let template = {
   name: '',
-  image:
-    '',
+  image: '',
   petType: 'cat',
   clothingType: 'shirt',
   price: 12.21,
-}
+};

@@ -14,6 +14,13 @@ import SingleUser from './components/SingleUser.js';
 import AllUsers from './components/AllUsers.js';
 import Cart from './components/Cart.js';
 import About from './components/About';
+
+import Contact from './components/Contact';
+import Dog from './components/Pets/Dog.js';
+import Cat from './components/Pets/Cat';
+import Horse from './components/Pets/Horse';
+import Other from './components/Pets/Other';
+
 import AdminHome from './components/AdminHome.js'
 import LoginRedirect from './components/LoginRedirect.js'
 import UserAdmin from './components/UserAdmin'
@@ -35,8 +42,12 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
 
             <Route exact path="/about" component={About} />
-            <Route exact path="/adminhome" component={AdminHome} />
+
+            <Route exact path="/contact" component={Contact} />
+
+          <Route exact path="/adminhome" component={AdminHome} />
             <Route exact path="/loginredirect" component={LoginRedirect} />
+
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/productsadmin" component={ProductsAdmin} />
@@ -50,15 +61,17 @@ class Routes extends Component {
             <Route exact path="/users/:id" component={SingleUser} />
             <Route exact path="/useradmin" component={UserAdmin} />
             <Route path="/cart" component={Cart} />
+            <Route path="/dog" component={Dog} />
+            <Route path="/cat" component={Cat} />
+            <Route path="/horse" component={Horse} />
+            <Route path="/other" component={Other} />
           </Switch>
         ) : (
           <Switch>
 
-            <Route exact path="/about" component={About} />
-
-
             <Route exact path="/" component={Home} />
-
+            <Route exact path="/about" component={About} />
+            <Route exact path="/contact" component={Contact} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route exact path="/products" component={Products} />
@@ -71,6 +84,10 @@ class Routes extends Component {
             />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
+            <Route path="/dog" component={Dog} />
+            <Route path="/cat" component={Cat} />
+            <Route path="/horse" component={Horse} />
+            <Route path="/other" component={Other} />
           </Switch>
         )}
       </div>
