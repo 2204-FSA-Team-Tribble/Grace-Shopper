@@ -77,16 +77,26 @@ export const addProduct = (userId, product) => {
       // finds users current orderId
       const user = await axios.get(`/api/users/${userId}`)
       const orders = user.data.orders
-      const activeOrderId = orders.filter((order) => order.status === 'cart')[0].id
-      // create new orderItem
-      const newItem = {
-        product: {price: product.price},
-        userId,
-        productId: product.id,
-        orderId: activeOrderId
-      }
-      const { data } = await axios.post(`/api/orderitems/${activeOrderId}`, newItem)
-      dispatch(_addProduct(data))
+      const activeOrder = orders.filter((order) => order.status === 'cart')[0]
+      const activeOrderId = activeOrder.id
+      // check if order already has product, if found add 1 to quantity
+      if (activeOrder.orderItems.filter(item => item.productId === product.id).length > 0)
+        {
+          let newItem = activeOrder.orderItems.filter(item => item.productId === product.id)[0]
+          newItem.quantity++
+          const {data} = await axios.put(`/api/orderitems/${newItem.orderId}`, newItem)
+          dispatch(_modifyProduct(data))
+        } else {
+          // create new orderItem
+          const newItem = {
+            product: {price: product.price},
+            userId,
+            productId: product.id,
+            orderId: activeOrderId
+          }
+          const { data } = await axios.post(`/api/orderitems/${activeOrderId}`, newItem)
+          dispatch(_addProduct(data))
+        }
     } catch (error) {
       console.log(error)
     }
@@ -105,10 +115,14 @@ export const removeProduct = (id) => {
   }
 }
 
-export const modifyProduct = (productId, quantity) => {
+export const modifyProduct = (id, quantity) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(/* API ROUTE */)
+      const item = await axios.get(`api/orderitems/${id}`)
+      console.log(item.data)
+      item.data.quantity = quantity
+      console.log(item.data)
+      const { data } = await axios.put(`/api/orderitems/${id}`, item.data)
       dispatch(_modifyProduct(data))
     } catch (error) {
       console.log(error)
@@ -127,6 +141,8 @@ export default function cartReducer(state = initialState, action) {
       return { products: [], total: 0 }
     case ADD_PRODUCT:
       return { ...state, products: [...state.products, action.product] }
+    case MODIFY_PRODUCT:
+      return { ...state, products: [...state.products.map(item => item.id === action.product.id ? action.product : item)]}
     case REMOVE_PRODUCT:
       let newTotal = state.total - action.totalPrice
       newTotal = Math.round(100 * newTotal) / 100

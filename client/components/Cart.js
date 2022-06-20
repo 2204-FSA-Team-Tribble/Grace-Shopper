@@ -1,13 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setCart, clearCart, removeProduct } from '../store/cart'
+import { setCart, clearCart, modifyProduct, removeProduct } from '../store/cart'
 
 export class Cart extends React.Component {
-    componentDidMount() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      cart: []
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentDidMount() {
     if (!this.props.auth.id) {
       this.props.clearCart()
     } else {
       this.props.setCart(this.props.auth.id)
+      this.setState({
+        cart: this.props.cart
+      })
     }
   }
 
@@ -17,8 +28,19 @@ export class Cart extends React.Component {
         this.props.clearCart()
       } else {
         this.props.setCart(this.props.auth.id)
+        this.setState({
+          cart: this.props.cart
+        })
       }
     }
+  }
+
+  handleChange(event, item) {
+    let newQuantity = Number(event.target.value)
+    this.props.modifyProduct(item.id, newQuantity)
+    this.setState({
+      cart: this.props.cart
+    })
   }
 
   render() {
@@ -38,7 +60,7 @@ export class Cart extends React.Component {
                 <strong>${item.price}</strong>
                 <p>{item.description}</p>
                 <span>Qty: </span>
-                <select name="quantity">
+                <select name="quantity" onChange={(event) => this.handleChange(event, item)} value={this.props.cart.products[index].quantity}>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -70,6 +92,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   setCart: (id) => dispatch(setCart(id)),
   clearCart: () => dispatch(clearCart()),
+  modifyProduct: (id, quantity) => dispatch(modifyProduct(id, quantity)),
   removeProduct: (id) => dispatch(removeProduct(id))
 })
 
