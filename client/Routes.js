@@ -66,7 +66,7 @@ class Routes extends Component {
             />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
-            <Route path="/checkout" component={Checkout} />
+            {/* <Route path="/checkout" component={Checkout} /> */}
           </Switch>
         )}
       </div>

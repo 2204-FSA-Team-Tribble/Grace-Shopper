@@ -29,10 +29,11 @@ export const _addProduct = (product) => {
   }
 }
 
-export const _removeProduct = (product) => {
+export const _removeProduct = (product, totalPrice) => {
   return {
     type: REMOVE_PRODUCT,
-    product
+    product,
+    totalPrice
   }
 }
 
@@ -47,18 +48,21 @@ export const _modifyProduct = (product) => {
 export const setCart = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(/* API ROUTE */)
+      const { data } = await axios.get(`/api/users/${id}`)
+      const orders = data.orders
+      const activeOrder = orders.filter(order => order.status === 'cart')[0]
+      const cart = activeOrder.orderItems
       let total
-      if (data.products.length > 0) {
-        total = data.products.reduce(
-          (sum, item) => sum + Number(item.price),
+      if (cart.length > 0) {
+        total = cart.reduce(
+          (sum, item) => sum + Number(item.totalPrice),
           0
         )
         total = Math.round(100 * total) / 100
       } else {
         total = 0
       }
-      dispatch(_setCart(data.products, total))
+      dispatch(_setCart(cart, total))
     } catch (error) {
       console.log(error)
     }
@@ -76,11 +80,12 @@ export const addProduct = (userId, productId) => {
   }
 }
 
-export const removeProduct = (userId, productId) => {
+export const removeProduct = (id) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.delete(/* API ROUTE */)
-      dispatch(_removeProduct(data))
+      const {data} = await axios.delete(`/api/orderitems/${id}`)
+      console.log(data)
+      dispatch(_removeProduct(data, data.totalPrice))
     } catch (error) {
       console.log(error)
     }
@@ -91,7 +96,7 @@ export const modifyProduct = (productId, quantity) => {
   return async (dispatch) => {
     try {
       const {data} = await axios.put(/* API ROUTE */)
-      dispatch (_modifyProduct(data))
+      dispatch(_modifyProduct(data))
     } catch (error) {
       console.log(error)
     }
@@ -110,7 +115,9 @@ export default function cartReducer(state = initialState, action) {
     case ADD_PRODUCT:
       return {...state, products: [...state.products, action.product]}
     case REMOVE_PRODUCT:
-      return {...state, products: [...state.products.filter((product) => productId !== action.product.id)]}
+      let newTotal = state.total - action.totalPrice
+      newTotal = Math.round(100 * newTotal) / 100
+      return {...state, products: [...state.products.filter((product) => product.id !== action.product.id)], total: newTotal}
     default:
       return state
   }
