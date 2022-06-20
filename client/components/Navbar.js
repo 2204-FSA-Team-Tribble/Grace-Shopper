@@ -1,49 +1,167 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
-import {logout} from '../store'
-import CartLink from './CartLink'
+import React from 'react';
+import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { logout } from '../store';
+import CartLink from './CartLink';
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>FS-App-Template</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-      <CartLink />
-    </nav>
-    <hr />
-  </div>
-)
+const Navbar = ({ handleClick, isLoggedIn }) => {
+  return (
+    <div>
+      <nav>
+        {isLoggedIn ? (
+          <div>
+            {/* The navbar will show these links after you log in */}
+            <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+              <div className="container">
+                <NavLink className="navbar-brand fw-bold fs-4" to="/">
+                  FUREVER_21
+                </NavLink>
+                <button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div
+                  className="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/"
+                      >
+                        Home
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/products">
+                        Products
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/about">
+                        About
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/contact">
+                        Contact
+                      </NavLink>
+                    </li>
+                  </ul>
+
+                  <div className="button">
+                    <NavLink
+                      to="/login"
+                      onClick={handleClick}
+                      className="btn btn-outline-secondary ms-2"
+                    >
+                      <i className="fa fa-user-plus me-1"></i>
+                      Logout
+                    </NavLink>
+                    <CartLink />
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        ) : (
+          <div>
+            {/* The navbar will show these links before you log in */}
+            <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+              <div className="container">
+                <NavLink className="navbar-brand fw-bold fs-4" to="/">
+                  FUREVER_21
+                </NavLink>
+                <button
+                  className="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+                <div
+                  className="collapse navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/"
+                      >
+                        Home
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/products">
+                        Products
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/about">
+                        About
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/contact">
+                        Contact
+                      </NavLink>
+                    </li>
+                  </ul>
+
+                  <div className="button">
+                    <NavLink to="/login" className="btn btn-outline-secondary">
+                      <i className="fa fa-sign-in me-1"></i>Login
+                    </NavLink>
+                    <NavLink
+                      to="/signup"
+                      className="btn btn-outline-secondary ms-2"
+                    >
+                      <i className="fa fa-user-plus me-1"></i>Signup
+                    </NavLink>
+
+                    <CartLink />
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        )}
+      </nav>
+      <hr />
+    </div>
+  );
+};
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
-    isLoggedIn: !!state.auth.id
-  }
-}
+    isLoggedIn: !!state.auth.id,
+  };
+};
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     handleClick() {
-      dispatch(logout())
-    }
-  }
-}
+      dispatch(logout());
+    },
+  };
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);

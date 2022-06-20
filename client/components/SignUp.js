@@ -16,11 +16,11 @@ const SignUp = (props) => {
         <Modal.Body>
           <Form onSubmit={handleSubmit} name={name}>
             <Form.Group className="mb-3" controlId="formSignUpButtons">
-              <Button className="btn btn-primary w-100 mb-4">
+              <Button className="btn btn-secondary w-100 mb-4">
                 <span className="fa fa-google me-2"></span>
                 Sign up With Google
               </Button>
-              <Button className="btn btn-primary w-100 mb-4">
+              <Button className="btn btn-secondary w-100 mb-4">
                 <span className="fa fa-facebook me-2"></span> Sign up With
                 Facebook
               </Button>
@@ -63,7 +63,7 @@ const SignUp = (props) => {
             >
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="secondary" type="submit">
               {displayName}
             </Button>
             {error && error.response && <div> {error.response.data} </div>}

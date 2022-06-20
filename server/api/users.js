@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {
-  models: { User, Product },
+  models: { User, OrderItem, Order },
 } = require('../db');
+const Sequelize = require('sequelize');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
@@ -21,6 +22,7 @@ router.get('/', async (req, res, next) => {
         'username',
         'email',
       ],
+      include: [{ model: Order, include: OrderItem }],
     });
     res.json(users);
   } catch (err) {
@@ -31,30 +33,69 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    const user = await User.findByPk(id, {
-      include: {
-        model: Product,
-      },
+    const userActiveOrders = await User.findByPk(id, {
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'address',
+        'city',
+        'state',
+        'zipcode',
+        'username',
+        'email',
+      ],
+      include: [
+        {
+          model: Order,
+          where: { status: 'cart' },
+          include: [
+            {
+              model: OrderItem,
+            },
+          ],
+        },
+      ],
     });
-    res.json(user);
+    const userOrders = await User.findByPk(id, {
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'address',
+        'city',
+        'state',
+        'zipcode',
+        'username',
+        'email',
+      ],
+      include: [
+        {
+          model: Order,
+          include: [
+            {
+              model: OrderItem,
+            },
+          ],
+        },
+      ],
+    });
+    if (req.body.activeOrders) {
+      res.json(userActiveOrders);
+    }
+    res.json(userOrders);
   } catch (error) {
     next(error);
   }
 });
 
+//
 router.put('/:id', async (req, res, next) => {
   try {
     const userId = req.params.id;
-    const user = await User.findByPk(userId, {
-      include: { model: Product },
-    });
-    if (req.body.addToCart) {
-      await user.addProduct(req.body.addToCart.productId);
-      res.json(user);
-    }
-    if (req.body.deleteFromCart) {
-      await user.removeProduct(req.body.deleteFromCart.productId);
-    }
+    const user = await User.findByPk(userId);
+    user.update(req.body);
+    res.json(user);
   } catch (error) {
     next(error);
   }
