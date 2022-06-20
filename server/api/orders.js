@@ -4,6 +4,8 @@ const {
 } = require('../db');
 module.exports = router;
 
+//in api/orders
+
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({ include: [OrderItem, User] });

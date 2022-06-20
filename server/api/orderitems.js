@@ -30,7 +30,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //need an orderId for this to function (send to the orders post first, pull that info, then come back here)
-router.post('/:id', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const newItem = await OrderItem.create(req.body.product);
     const user = await User.findByPk(req.body.userId);
