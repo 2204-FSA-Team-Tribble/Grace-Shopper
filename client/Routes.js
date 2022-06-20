@@ -16,7 +16,7 @@ import Cart from './components/Cart.js';
 import About from './components/About';
 import AdminHome from './components/AdminHome.js'
 import LoginRedirect from './components/LoginRedirect.js'
-
+import UserAdmin from './components/UserAdmin'
 /**
  * COMPONENT
  */
@@ -48,6 +48,7 @@ class Routes extends Component {
             <Route path="/createProduct" component={CreateProduct} />
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/users/:id" component={SingleUser} />
+            <Route exact path="/useradmin" component={UserAdmin} />
             <Route path="/cart" component={Cart} />
           </Switch>
         ) : (
