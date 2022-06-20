@@ -2,9 +2,12 @@
 
 const {
   db,
-  models: { User, Product },
+  models: { User, Product, Order, OrderItem },
 } = require('../server/db');
 const productSeed = require('./ProductSeed');
+const OrderItemSeed = require('./orderItemSeed');
+const OrderSeed = require('./orderSeed');
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -139,23 +142,44 @@ async function seed() {
     })
   );
 
+  const orderItems = await Promise.all(
+    OrderItemSeed.map((item) => {
+      return OrderItem.create(item);
+    })
+  );
+
+  const orders = await Promise.all(
+    OrderSeed.map((item) => {
+      return Order.create(item);
+    })
+  );
+
+  await orders[1].setUser(users[7]);
+  await orders[0].setUser(users[0]);
+  await orders[2].setUser(users[9]);
+  await orderItems[0].setOrder(orders[0]);
+  await orderItems[1].setOrder(orders[1]);
+  await orderItems[2].setOrder(orders[2]);
+  await orderItems[3].setOrder(orders[0]);
+  await orderItems[4].setOrder(orders[2]);
+  await orderItems[5].setOrder(orders[0]);
+  await orderItems[6].setOrder(orders[2]);
+  await orderItems[0].setProduct(products[1]);
+  await orderItems[1].setProduct(products[1]);
+  await orderItems[2].setProduct(products[1]);
+  await orderItems[3].setProduct(products[5]);
+  await orderItems[4].setProduct(products[0]);
+  await orderItems[5].setProduct(products[3]);
+  await orderItems[6].setProduct(products[4]);
+  await orderItems[0].setUser(users[0]);
+  await orderItems[1].setUser(users[7]);
+  await orderItems[2].setUser(users[0]);
+  await orderItems[3].setUser(users[0]);
+  await orderItems[4].setUser(users[9]);
+  await orderItems[5].setUser(users[0]);
+  await orderItems[6].setUser(users[9]);
+
   console.log(`seeded successfully`);
-
-  await users[1].addProducts(products[1]);
-  await users[2].addProducts([products[50], [9], [21], [2]]);
-  await users[3].addProducts([products[51], [43], [32], [11], [6]]);
-  await users[4].addProducts([products[1], [45], [44]]);
-  await users[5].addProducts([products[4], [6], [9], [29]]);
-  await users[6].addProducts([products[15], [19], [31]]);
-  await users[7].addProducts([products[1], [43], [55], [46], [47]]);
-  await users[8].addProducts([products[26], [37]]);
-
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
-  };
 }
 
 /*
