@@ -67,21 +67,18 @@ class SingleProductAdmin extends React.Component {
     const user = this.props.auth
 
     return (
-      <div>
+      <div className='container'>
         {user.isAdmin ? (<div>
-        <h1>Update Product</h1>
-        <div>
-          <Link to='/productsadmin'>
-            <button>
-              Cancel
-            </button>
-          </Link>
+          <div className='row admin-top'>
+            <div className='col'><h1>Update Product</h1></div>
+            <div className='col'><Link to="/productsadmin"><button className="btn btn-md btn-block btn-primary admin-right-button">Cancel</button></Link></div>
+          </div>
+        <div className='text-center'>
           <form id='product-form' onSubmit={handleSubmit}>
-            <button type='submit'>Save Changes</button>
-            <label htmlFor='name'>Product Name: </label>
-            <input name='name' onChange={handleChange} value={name} />
-            <label htmlFor='clothingType'>Clothing Type: </label>
-            <select name='clothingType' onChange={handleChange} value={clothingType}>
+            <label className='lead' htmlFor='name'>Product Name: </label>
+            <input class="form-control" name='name' onChange={handleChange} value={name} />
+            <label className='lead' htmlFor='clothingType'>Clothing Type: </label>
+            <select class="form-control" name='clothingType' onChange={handleChange} value={clothingType}>
               <option value='shirt'>shirt</option>
               <option value='dress'>dress</option>
               <option value='coat'>coat</option>
@@ -89,19 +86,20 @@ class SingleProductAdmin extends React.Component {
               <option value='shoes'>shoes</option>
               <option value='other'>other</option>
             </select>
-            <label htmlFor='petType'>Pet Type </label>
-            <select name='petType' onChange={handleChange} value={petType}>
+            <label className='lead' htmlFor='petType'>Pet Type </label>
+            <select class="form-control" name='petType' onChange={handleChange} value={petType}>
               <option value='dog'>dog</option>
               <option value='cat'>cat</option>
               <option value='horse'>horse</option>
               <option value='other'>other</option>
             </select>
-            <label htmlFor='price'>Price: </label>
-            <input name='price' onChange={handleChange} value={price} type='number' step='.01'/>
-            <label htmlFor='image'>Product Image: </label>
-            <input name='image' onChange={handleChange} value={image} />
-            <label htmlFor='description'>Product Description: </label>
-            <input name='description' onChange={handleChange} value={description} />
+            <label className='lead' htmlFor='price'>Price: </label>
+            <input class="form-control" name='price' onChange={handleChange} value={price} type='number' step='.01'/>
+            <label className='lead' htmlFor='image'>Product Image: </label>
+            <input class="form-control" name='image' onChange={handleChange} value={image} />
+            <label className='lead' htmlFor='description'>Product Description: </label>
+            <input class="form-control" name='description' onChange={handleChange} value={description} />
+            <button type="submit" className="btn btn-lg btn-block btn-success">Submit</button>
           </form>
            <img src={image} />
         </div>
