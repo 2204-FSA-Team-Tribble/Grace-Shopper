@@ -97,12 +97,13 @@ export const addProduct = (userId, product) => {
       } else {
         // create new orderItem
         const newItem = {
-          product: { price: product.price },
+          product: { price: product.price},
           userId,
           productId: product.id,
           orderId: activeOrderId,
         }
         const { data } = await axios.post(`/api/orderitems/`, newItem)
+        data.product = product
         dispatch(_addProduct(data))
       }
     } catch (error) {
