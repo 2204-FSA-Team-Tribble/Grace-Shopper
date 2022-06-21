@@ -84,6 +84,7 @@ export const addProduct = (userId, product) => {
         {
           let newItem = activeOrder.orderItems.filter(item => item.productId === product.id)[0]
           newItem.quantity++
+          delete item.data.totalPrice
           const {data} = await axios.put(`/api/orderitems/${newItem.orderId}`, newItem)
           dispatch(_modifyProduct(data))
         } else {
@@ -94,7 +95,7 @@ export const addProduct = (userId, product) => {
             productId: product.id,
             orderId: activeOrderId
           }
-          const { data } = await axios.post(`/api/orderitems/${activeOrderId}`, newItem)
+          const { data } = await axios.post(`/api/orderitems/`, newItem)
           dispatch(_addProduct(data))
         }
     } catch (error) {
@@ -119,9 +120,8 @@ export const modifyProduct = (id, quantity) => {
   return async (dispatch) => {
     try {
       const item = await axios.get(`api/orderitems/${id}`)
-      console.log(item.data)
       item.data.quantity = quantity
-      console.log(item.data)
+      delete item.data.totalPrice
       const { data } = await axios.put(`/api/orderitems/${id}`, item.data)
       dispatch(_modifyProduct(data))
     } catch (error) {
