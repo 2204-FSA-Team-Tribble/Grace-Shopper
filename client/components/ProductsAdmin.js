@@ -23,6 +23,10 @@ export class ProductsAdmin extends React.Component {
   render() {
     const products = this.props.products.products
     const user = this.props.auth
+
+    // Sort products by Id before displaying
+    products.sort((a,b) => a.id-b.id)
+
     return (
       <div>
         {user.isAdmin ? (
