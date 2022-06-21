@@ -76,7 +76,11 @@ router.get('/:id', async (req, res, next) => {
           include: [
             {
               model: OrderItem,
-              include: Product,
+              include: [
+                {
+                  model: Product
+                }
+              ]
             },
           ],
         },
