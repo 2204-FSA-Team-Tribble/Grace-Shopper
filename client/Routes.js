@@ -23,7 +23,8 @@ import Other from './components/Pets/Other';
 
 import AdminHome from './components/AdminHome.js'
 import LoginRedirect from './components/LoginRedirect.js'
-
+import UserAdmin from './components/UserAdmin'
+import UserHome from './components/UserHome'
 
 /**
  * COMPONENT
@@ -60,6 +61,8 @@ class Routes extends Component {
             <Route path="/createProduct" component={CreateProduct} />
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/users/:id" component={SingleUser} />
+            <Route exact path="/useradmin" component={UserAdmin} />
+            <Route exact path="/userhome" component={UserHome} />
             <Route path="/cart" component={Cart} />
             <Route path="/dog" component={Dog} />
             <Route path="/cat" component={Cat} />

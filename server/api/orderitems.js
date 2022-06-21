@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { Product, OrderItem, Order },
+  models: { Product, OrderItem, Order, User },
 } = require('../db');
 module.exports = router;
 
@@ -47,7 +47,11 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const item = await OrderItem.findByPk(req.params.id);
+    const item = await OrderItem.findByPk(req.params.id, {include: [
+      {
+        model: Product
+      }
+    ]});
     await item.update(req.body);
     res.json(item);
   } catch (error) {
