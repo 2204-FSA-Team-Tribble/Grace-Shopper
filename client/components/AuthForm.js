@@ -8,15 +8,6 @@ import { authenticate } from '../store';
  */
 const AuthForm = (props) => {
   const { name, displayName, handleSubmit, error } = props;
-  // const [userName, setUsename] = useState('')
-  // const [password, setPassword] = useState('')
-  // const error = useSelector (state => state.auth.error)
-  // const dispatch = useDispatch()
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   dispatch(authenticate(userName, password, formName))
-  // }
 
   return (
     <>
@@ -99,7 +90,7 @@ const mapLogin = (state) => {
   };
 };
 
-const mapDispatchLogin = (dispatch, {history}) => {
+const mapDispatchLogin = (dispatch, { history }) => {
   return {
     handleSubmit(evt) {
       evt.preventDefault();

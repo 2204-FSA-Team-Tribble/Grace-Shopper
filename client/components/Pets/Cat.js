@@ -50,7 +50,11 @@ const Cat = () => {
         <div className="pet-list">
           <label>
             Select a Style:
-            <select className="form-select" onChange={handleChange}>
+            <select
+              className="form-select"
+              onChange={handleChange}
+              value={type}
+            >
               <option value="all">All</option>
               <option value="shirt">Shirt</option>
               <option value="coat">Coat</option>
