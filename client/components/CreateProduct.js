@@ -36,9 +36,9 @@ export class CreateProduct extends React.Component {
       <div className='container'>
         {user.isAdmin ? (<div className="form">
           <div className='row admin-top'>
-                  <div className='col'><h1>Create a new Product</h1></div>
-                  <div className='col'><Link to="/productsadmin"><button className="btn btn-md btn-block btn-primary admin-right-button">Cancel</button></Link></div>
-                </div>
+            <div className='col'><h1>Create a new Product</h1></div>
+            <div className='col'><Link to="/productsadmin"><button className="btn btn-md btn-block btn-primary admin-right-button">Cancel</button></Link></div>
+          </div>
         <div className='text-center'>
           <form id='product-form' onSubmit={handleSubmit}>
             <div className='row'>

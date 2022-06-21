@@ -73,7 +73,7 @@ export class UserAdmin extends React.Component {
         </div>
         <div className='text-center'>
           <form onSubmit={handleSubmit}>
-          <div className=''>
+          <div>
             <div className="row">
               <div className="col-md-6 mb-3">
                 <label className='lead' htmlFor="firstname">First Name</label>
