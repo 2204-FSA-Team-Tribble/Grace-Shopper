@@ -133,7 +133,7 @@ export class UserAdmin extends React.Component {
                 <button type="submit" className="btn btn-lg btn-block btn-success">Submit</button>
               </div>
               <div>
-                <Link to="/products"><button type="button" className="btn btn-lg btn-block btn-warning">Cancel</button></Link>
+                <Link to="/loginredirect"><button type="button" className="btn btn-lg btn-block btn-warning">Cancel</button></Link>
               </div>
             </div>
             {this.state.invalidSubmission ? (
