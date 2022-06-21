@@ -31,7 +31,7 @@ const FilterProducts = () => {
   return (
     <>
       <div className="container  my-5 py-5">
-        <div className="d-flex justify-content-center">
+        <div>
           <div>
             <p>Shop By Pet</p>
           </div>

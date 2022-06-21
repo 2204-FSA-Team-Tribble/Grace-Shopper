@@ -93,3 +93,8 @@ a {
 .checkout-total {
   float: right;
 }
+
+.cover-dog {
+  height: auto;
+  width: 100%;
+}
