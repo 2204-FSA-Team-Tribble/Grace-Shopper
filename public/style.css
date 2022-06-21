@@ -84,3 +84,12 @@ a {
 .admin-right-button {
   float: right;
 }
+
+.cart-product-picture {
+  max-height: 5rem;
+  width: auto;
+}
+
+.checkout-total {
+  float: right;
+}
