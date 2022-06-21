@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchProducts } from '../store/products.js';
 import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
+import ReactPaginate from 'react-paginate';
 
 export class Products extends React.Component {
   constructor(props) {
