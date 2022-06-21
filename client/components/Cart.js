@@ -5,9 +5,6 @@ import { setCart, clearCart, modifyProduct, removeProduct } from '../store/cart'
 export class Cart extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      cart: []
-    }
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -16,9 +13,6 @@ export class Cart extends React.Component {
       this.props.clearCart()
     } else {
       this.props.setCart(this.props.auth.id)
-      this.setState({
-        cart: this.props.cart
-      })
     }
   }
 
@@ -28,9 +22,6 @@ export class Cart extends React.Component {
         this.props.clearCart()
       } else {
         this.props.setCart(this.props.auth.id)
-        this.setState({
-          cart: this.props.cart
-        })
       }
     }
   }

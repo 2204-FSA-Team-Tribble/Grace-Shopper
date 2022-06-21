@@ -88,9 +88,9 @@ export const addProduct = (userId, product) => {
           (item) => item.productId === product.id
         )[0]
         newItem.quantity++
-        delete item.data.totalPrice
+        delete newItem.totalPrice
         const { data } = await axios.put(
-          `/api/orderitems/${newItem.orderId}`,
+          `/api/orderitems/${newItem.id}`,
           newItem
         )
         dispatch(_modifyProduct(data))
