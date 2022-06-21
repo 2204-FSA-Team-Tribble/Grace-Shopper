@@ -6,8 +6,9 @@ const Order = db.define('order', {
   total: {
     type: Sequelize.FLOAT,
   },
-  status:{
-    type:Sequelize.ENUM('cart','complete')
+  status: {
+    type: Sequelize.ENUM('cart', 'complete'),
+    default: 'cart',
   },
   firstname: {
     type: Sequelize.STRING,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setCart } from '../store/cart';
-import { setUser, _setUser } from '../store/singleUser';
+import { setUser } from '../store/singleUser';
 import Form from 'react-bootstrap/Form';
 
 export class Checkout extends React.Component {
@@ -42,7 +42,7 @@ export class Checkout extends React.Component {
       this.props.setUser(this.props.auth.id);
       this.setState({
         id: this.props.user.id,
-        firstname: this.props.user.firstname,
+        firstname: this.props.auth.firstname,
         lastname: this.props.user.lastname,
         address: this.props.user.address,
         zipcode: this.props.user.zipcode,
@@ -50,6 +50,17 @@ export class Checkout extends React.Component {
         email: this.props.user.email,
       });
       console.log('updated', this.props);
+    }
+    if (prevProps.user.id !== this.props.user.id) {
+      this.setState({
+        id: this.props.user.id,
+        firstname: this.props.auth.firstname,
+        lastname: this.props.user.lastname,
+        address: this.props.user.address,
+        zipcode: this.props.user.zipcode,
+        state: this.props.user.state,
+        email: this.props.user.email,
+      });
     }
   }
 
@@ -73,8 +84,9 @@ export class Checkout extends React.Component {
           return (
             <div className="cart-item" key={index}>
               <div>
-                <p>{item.product.name}</p>
-                <strong>${item.price}</strong>
+                <p>
+                  {item.product.name}: <strong>${item.price}</strong>
+                </p>
               </div>
             </div>
           );
@@ -187,32 +199,15 @@ export class Checkout extends React.Component {
             />
           </div>
         </form>
+        <button> Submit Address and Payment</button>
       </div>
       /*
          FEATURES FOR THIS PAGE
          Show the list of XitemsX, XtotalX.
-         Field to enter Address (populated with address if logged in)
+         X Field to enter Address (populated with address if logged in)
          Field to enter payment
          Submit button that gives a "You did it" pop up
         */
-
-      /* {cart.map((item, index) => {
-            return (
-              <div className="cart-item" key={index}>
-                <img src={item.image} />
-                <div>
-                  <p>{item.name}</p>
-                  <strong>${item.price}</strong>
-                  <p>{item.description}</p>
-                  <span>Qty: </span>
-                </div>
-              </div>
-            );
-          })}
-          <div>TOTAL:</div>
-          {}
-          <button type="button">Complete checkout</button>
-         */
     );
   }
 }

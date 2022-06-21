@@ -23,9 +23,8 @@ export const _updateUser = (user) => {
 export const setUser = (id) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`/api/users/users/${id}`)
-      console.log('data', data)
-      dispatch(_setUser(data))
+      const { data } = await axios.get(`/api/users/users/${id}`);
+      dispatch(_setUser(data));
     } catch (error) {
       console.log(error);
     }
