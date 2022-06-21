@@ -18,7 +18,7 @@ export const updateUser = (user, history) => {
   return async (dispatch) => {
     const {data: updated} = await axios.put(`/api/users/update/${user.id}`, user);
     dispatch(_updateUser(updated));
-    history.push('/products')
+    history.push('/loginredirect')
   }
 }
 

@@ -23,18 +23,12 @@ export const _updateUser = (user) => {
 export const setUser = (id) => {
   return async (dispatch) => {
     try {
-      const {data} = await axios.get(`/api/users/${id}`)
+      const {data} = await axios.get(`/api/users/users/${id}`)
+      console.log('data', data)
       dispatch(_setUser(data))
     } catch (error) {
       console.log(error)
     }
-  }
-}
-
-export const updateUser = (user) => {
-  return async (dispatch) => {
-    const {data} = await axios.put(/* API ROUTE, user */)
-    dispatch(_updateUser(data))
   }
 }
 
