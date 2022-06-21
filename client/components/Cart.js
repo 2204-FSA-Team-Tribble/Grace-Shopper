@@ -44,10 +44,10 @@ export class Cart extends React.Component {
           return (
             <div className="cart-item" key={index}>
               <div>
-                <img src={`${item.image}`} />
+                <img src={`${item.product.image}`} />
               </div>
               <div>
-                <p>{item.name}</p>
+                <p>{item.product.name}</p>
                 <strong>${item.price}</strong>
                 <p>{item.description}</p>
                 <span>Qty: </span>
