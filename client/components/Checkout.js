@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCart } from '../store/cart';
+import { setCart, checkoutCart } from '../store/cart';
 import { setUser } from '../store/singleUser';
 import Form from 'react-bootstrap/Form';
 
@@ -8,58 +8,58 @@ export class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
+      userId: 0,
+      orderId: 0,
       firstname: '',
       lastname: '',
       address: '',
-
+      state: 'AL',
+      zipcode: 10000,
       email: '',
+      total: 0,
+      completedOrderId: 0,
       invalidSubmission: false,
     };
-    // this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
     if (this.props.auth.id) {
       this.props.setCart(this.props.auth.id);
       this.props.setUser(this.props.auth.id);
-      console.log('mounted');
       this.setState({
-        id: this.props.user.id,
+        userId: this.props.user.id,
+        orderId: this.props.cart.orderId,
         firstname: this.props.user.firstname,
         lastname: this.props.user.lastname,
         address: this.props.user.address,
         email: this.props.user.email,
         zipcode: this.props.user.zipcode,
+        total: this.props.cart.total,
       });
     }
-    console.log('mounted no auth.id');
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.auth.id !== this.props.auth.id) {
       this.props.setCart(this.props.auth.id);
       this.props.setUser(this.props.auth.id);
-      this.setState({
-        id: this.props.user.id,
-        firstname: this.props.auth.firstname,
-        lastname: this.props.user.lastname,
-        address: this.props.user.address,
-        zipcode: this.props.user.zipcode,
-        state: this.props.user.state,
-        email: this.props.user.email,
-      });
-      console.log('updated', this.props);
     }
-    if (prevProps.user.id !== this.props.user.id) {
+    if (
+      prevProps.user.id !== this.props.user.id ||
+      prevProps.cart.orderId !== this.props.cart.orderId
+    ) {
       this.setState({
         id: this.props.user.id,
+        orderId: this.props.cart.orderId,
         firstname: this.props.auth.firstname,
         lastname: this.props.user.lastname,
         address: this.props.user.address,
         zipcode: this.props.user.zipcode,
         state: this.props.user.state,
         email: this.props.user.email,
+        total: this.props.cart.total,
       });
     }
   }
@@ -71,10 +71,27 @@ export class Checkout extends React.Component {
     });
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const s = this.state;
+    let updatedOrder = {
+      orderId: s.orderId,
+      firstname: s.firstname,
+      lastname: s.lastname,
+      address: s.address,
+      state: s.state,
+      zipcode: s.zipcode,
+      email: s.email,
+      total: s.total,
+    };
+    this.setState({ completedOrderId: s.orderId });
+    this.props.checkoutCart(this.state.orderId, updatedOrder);
+  };
+
   render() {
     const products = this.props.cart.products || [];
-    const user = this.state;
-    const { handleChange } = this;
+    const userOrder = this.state;
+    const { handleChange, handleSubmit } = this;
 
     return (
       <div>
@@ -91,16 +108,16 @@ export class Checkout extends React.Component {
             </div>
           );
         })}
-        <h5>Total: ${this.props.cart.total}</h5>
+        <h5>Total: ${userOrder.total}</h5>
         <h4>Address:</h4>
         <p></p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="input">
             <label htmlFor="firstname">First Name</label>
             <input
               name="firstname"
               onChange={handleChange}
-              value={user.firstname || ''}
+              value={userOrder.firstname || ''}
             />
           </div>
           <div className="input">
@@ -108,7 +125,7 @@ export class Checkout extends React.Component {
             <input
               name="lastname"
               onChange={handleChange}
-              value={user.lastname || ''}
+              value={userOrder.lastname || ''}
             />
           </div>
           <div className="input">
@@ -116,7 +133,7 @@ export class Checkout extends React.Component {
             <input
               name="address"
               onChange={handleChange}
-              value={user.address || ''}
+              value={userOrder.address || ''}
             />
           </div>
           <div className="input">
@@ -124,7 +141,7 @@ export class Checkout extends React.Component {
             <input
               name="zipcode"
               onChange={handleChange}
-              value={user.zipcode || ''}
+              value={userOrder.zipcode || ''}
             />
           </div>
           <div className="input">
@@ -132,7 +149,7 @@ export class Checkout extends React.Component {
             <select
               name="state"
               onChange={handleChange}
-              value={user.state || ''}
+              value={userOrder.state || ''}
             >
               <option value="AK">AK</option>
               <option value="AL">AL</option>
@@ -195,11 +212,11 @@ export class Checkout extends React.Component {
               name="name"
               onChange={handleChange}
               type="email"
-              value={user.email || ''}
+              value={userOrder.email || ''}
             />
           </div>
         </form>
-        <button> Submit Address and Payment</button>
+        <button onClick={handleSubmit}> Submit Address and Payment</button>
       </div>
       /*
          FEATURES FOR THIS PAGE
@@ -221,6 +238,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   setCart: (id) => dispatch(setCart(id)),
   setUser: (id) => dispatch(setUser(id)),
+  checkoutCart: (orderId, order) => dispatch(checkoutCart(orderId, order)),
 });
 
 export default connect(mapState, mapDispatch)(Checkout);

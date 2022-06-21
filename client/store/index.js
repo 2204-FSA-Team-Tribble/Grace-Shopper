@@ -13,14 +13,13 @@ import singleProductReducer from './singleProduct';
 import updateProductReducer from './updateProduct';
 import deleteUserReducer from './deleteUser';
 import updateUserReducer from './updateUser';
-import order from './order';
+
 
 const reducer = combineReducers({
   auth: auth,
   users: users,
   cart: cart,
   user: user,
-  order: order,
   products: productsReducer,
   deleteProduct: deleteProductReducer,
   createProduct: createProductReducer,
