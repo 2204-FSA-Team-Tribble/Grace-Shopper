@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { User, OrderItem, Order },
+  models: { User, OrderItem, Order, Product },
 } = require('../db');
 const Sequelize = require('sequelize');
 module.exports = router;
@@ -75,6 +75,11 @@ router.get('/:id', async (req, res, next) => {
           include: [
             {
               model: OrderItem,
+              include: [
+                {
+                  model: Product
+                }
+              ]
             },
           ],
         },
