@@ -41,7 +41,6 @@ export class AllUsers extends React.Component {
           <div className="table-responsive">
             <div className='row admin-top'>
               <div className='col'><h1>All Users</h1></div>
-              <div className='col'><button className="btn btn-md btn-block btn-primary admin-right-button">Create New User</button></div>
             </div>
             <table className="table table-striped table-sm">
             <thead>

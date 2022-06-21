@@ -91,7 +91,16 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.put('/update/:id', async (req, res, next) => {
+router.get('/users/:id', async (req, res, next) => {
+  try {
+    const findUser = await User.findByPk(req.params.id)
+    res.json(findUser)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/update/:id', async (req, res ,next) => {
   try {
     const findUser = await User.findByPk(req.params.id);
     await findUser.update(req.body);

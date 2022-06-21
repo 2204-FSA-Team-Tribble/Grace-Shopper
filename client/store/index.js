@@ -18,7 +18,7 @@ const reducer = combineReducers({
   auth: auth,
   users: users,
   cart: cart,
-  user,
+  user: user,
   products: productsReducer,
   deleteProduct: deleteProductReducer,
   createProduct: createProductReducer,

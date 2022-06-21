@@ -22,8 +22,10 @@ import Cat from './components/Pets/Cat';
 import Horse from './components/Pets/Horse';
 import Other from './components/Pets/Other';
 
-import AdminHome from './components/AdminHome.js';
-import LoginRedirect from './components/LoginRedirect.js';
+import AdminHome from './components/AdminHome.js'
+import LoginRedirect from './components/LoginRedirect.js'
+import UserAdmin from './components/UserAdmin'
+import UserHome from './components/UserHome'
 
 /**
  * COMPONENT
@@ -60,6 +62,8 @@ class Routes extends Component {
             <Route path="/createProduct" component={CreateProduct} />
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/users/:id" component={SingleUser} />
+            <Route exact path="/useradmin" component={UserAdmin} />
+            <Route exact path="/userhome" component={UserHome} />
             <Route path="/cart" component={Cart} />
             <Route path="/checkout" component={Checkout} />
             <Route path="/dog" component={Dog} />
@@ -69,6 +73,10 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
@@ -84,7 +92,10 @@ class Routes extends Component {
             />
             <Route path="/createProduct" component={CreateProduct} />
             <Route path="/cart" component={Cart} />
+<<<<<<< HEAD
             <Route path="/checkout" component={Checkout} />
+=======
+>>>>>>> main
             <Route path="/dog" component={Dog} />
             <Route path="/cat" component={Cat} />
             <Route path="/horse" component={Horse} />

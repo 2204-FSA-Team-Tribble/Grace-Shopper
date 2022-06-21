@@ -67,6 +67,14 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                       <i className="fa fa-user-plus me-1"></i>
                       Logout
                     </NavLink>
+                    <NavLink
+                      to="/loginredirect"
+                      className="btn btn-outline-secondary ms-2"
+                    >
+                      <i className="fa fa-user-plus me-1"></i>
+                      Home
+                    </NavLink>
+
                     <CartLink />
                   </div>
                 </div>
