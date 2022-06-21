@@ -42,7 +42,11 @@ const Horse = () => {
         <div className="pet-list">
           <label>
             Select a Style:
-            <select className="form-select" onChange={handleChange}>
+            <select
+              className="form-select"
+              onChange={handleChange}
+              value={type}
+            >
               <option value="all">All</option>
               <option value="coat">Coat</option>
               <option value="other">Other</option>
