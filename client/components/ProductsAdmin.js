@@ -23,39 +23,61 @@ export class ProductsAdmin extends React.Component {
   render() {
     const products = this.props.products.products
     const user = this.props.auth
+
+    // Sort products by Id before displaying
+    products.sort((a,b) => a.id-b.id)
+
     return (
       <div>
         {user.isAdmin ? (
-          <div>
-            <h1>Products - Admin</h1>
-            <div>
-              <Link to="/createProduct">
-                <button className="section-button" type='button'>
-                  Create a product
-                </button>
-              </Link>
+          <div className='container'>
+            <div className="table-responsive">
+              <div className='row admin-top'>
+                  <div className='col'><h1>All Products</h1></div>
+                  <div className='col'><Link to="/createProduct"><button className="btn btn-md btn-block btn-primary admin-right-button">Create New Product</button></Link></div>
+                </div>
+             <div>
             </div>
+            <table className="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
             {products.map((product) =>{
               return (
-                <div key={product.id}>
-                  <h2>{product.name}</h2>
-                  <img src={product.image} />
-                  <p>${product.price}</p>
-                  <button className='delete' onClick={
-                      (evt) => {
-                          this.handleDelete(product.id);
-                        }
-                      }>X
-                  </button>
+                <tr className='product' key={product.id}>
+                  <td>{product.id}</td>
+                  <td>{product.name}</td>
+                  <td>{product.description}</td>
+                  <td>{product.price}</td>
+                  <td>
+                    <button className="btn btn-sm btn-block btn-danger" onClick={
+                        (evt) => {
+                            this.handleDelete(product.id);
+                          }
+                        }>Delete
+                    </button>
+                  </td>
+                  <td>
                   <Link to={`/productsadmin/${product.id}`}>
-                  <button
-                  >
-                    Update
-                  </button>
-                    </Link>
-                </div>
+                    <button className="btn btn-sm btn-block btn-success"
+                    >
+                      Update
+                    </button>
+                      </Link>
+                  </td>
+                </tr>
               )
             })}
+            </tbody>
+            </table>
+            </div>
           </div>
         ) :(<div>
           <h1>Access Denied</h1>
