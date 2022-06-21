@@ -11,6 +11,8 @@ import deleteProductReducer from './deleteProduct'
 import createProductReducer from './createProduct'
 import singleProductReducer from './singleProduct'
 import updateProductReducer from './updateProduct'
+import deleteUserReducer from './deleteUser'
+import updateUserReducer from './updateUser'
 
 const reducer = combineReducers({
   auth: auth,
@@ -21,6 +23,8 @@ const reducer = combineReducers({
   createProduct: createProductReducer,
   singleProduct: singleProductReducer,
   updateProduct: updateProductReducer,
+  deleteUser: deleteUserReducer,
+  updateUser: updateUserReducer,
  })
 
 const middleware = composeWithDevTools(
