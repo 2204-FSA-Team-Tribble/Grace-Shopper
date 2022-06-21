@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  models: { User, OrderItem, Order },
+  models: { User, OrderItem, Order, Product },
 } = require('../db');
 const Sequelize = require('sequelize');
 module.exports = router;
@@ -75,6 +75,11 @@ router.get('/:id', async (req, res, next) => {
           include: [
             {
               model: OrderItem,
+              include: [
+                {
+                  model: Product
+                }
+              ]
             },
           ],
         },
@@ -88,6 +93,15 @@ router.get('/:id', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/users/:id', async (req, res, next) => {
+  try {
+    const findUser = await User.findByPk(req.params.id)
+    res.json(findUser)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.put('/update/:id', async (req, res ,next) => {
   try {
