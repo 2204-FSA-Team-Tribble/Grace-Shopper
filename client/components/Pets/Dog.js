@@ -14,6 +14,7 @@ const Dog = () => {
   useEffect(() => {
     setisLoading(false);
     dispatch(fetchProducts());
+    ``;
   }, [dispatch]);
 
   const handleChange = (e) => {
