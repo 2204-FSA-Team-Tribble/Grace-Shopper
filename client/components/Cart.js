@@ -83,10 +83,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   setCart: (id) => dispatch(setCart(id)),
   clearCart: () => dispatch(clearCart()),
-<<<<<<< HEAD
-=======
   modifyProduct: (id, quantity) => dispatch(modifyProduct(id, quantity)),
->>>>>>> main
   removeProduct: (id) => dispatch(removeProduct(id))
 })
 

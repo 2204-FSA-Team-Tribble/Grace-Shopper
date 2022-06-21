@@ -32,7 +32,13 @@ const OrderSeed = [
     zipcode: 38970,
     email: 'shirlythebossb@yahoo.com',
   },
-  { email: 'boop@gmail.com' },
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
+  {},
 ];
 
 module.exports = OrderSeed;
