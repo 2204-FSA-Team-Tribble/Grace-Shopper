@@ -1,6 +1,6 @@
 import React from 'react';
 import Products from './Products';
-import FilterProducts from './filterProducts';
+import FilterProducts from './FilterProducts';
 
 const Home = () => {
   return (
