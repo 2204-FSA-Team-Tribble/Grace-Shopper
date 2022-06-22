@@ -111,3 +111,8 @@ a {
 .home-fonts {
   color:black;
 }
+
+.home-products {
+  display: flex;
+  flex-wrap: wrap;
+}
