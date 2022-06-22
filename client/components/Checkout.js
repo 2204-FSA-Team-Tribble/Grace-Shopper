@@ -5,6 +5,8 @@ import { setUser } from '../store/singleUser';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 export class Checkout extends React.Component {
   constructor(props) {
@@ -88,7 +90,7 @@ export class Checkout extends React.Component {
       total: s.total,
     };
     this.setState({ completedOrderId: s.orderId, status: 'complete' });
-    console.log(this.state);
+
     this.props.checkoutCart(this.state.orderId, updatedOrder);
   };
 
@@ -96,6 +98,7 @@ export class Checkout extends React.Component {
     const products = this.props.cart.products || [];
     const userOrder = this.state;
     const { handleChange, handleSubmit } = this;
+    console.log('PROPSSSS', this.props);
     if (this.state.status === 'complete') {
       return (
         <Alert variant="success">
@@ -104,7 +107,16 @@ export class Checkout extends React.Component {
           </Alert.Heading>
         </Alert>
       );
-    } else {
+    } else if (products.length<1){
+      return (<div>
+        <Alert variant='danger'>
+          <Alert.Heading>
+            Oops! Looks like you don't have any items in your cart to check out. 
+          </Alert.Heading>
+        </Alert>
+      </div>)
+    }
+    else{
       return (
         <div>
           <h3>Checkout</h3>
@@ -125,111 +137,116 @@ export class Checkout extends React.Component {
           <p></p>
           <Form onSubmit={handleSubmit}>
             <Row className="mb-3">
-              <Form.Group className="md-form w-50">
-                <Form.Label htmlFor="firstname">First Name</Form.Label>
+              <Col>
+                <Form.Label>First Name</Form.Label>
                 <Form.Control
                   name="firstname"
                   onChange={handleChange}
                   value={userOrder.firstname || ''}
                 />
-                <Form.Label htmlFor="lastname">Last Name</Form.Label>
+              </Col>
+              <Col>
+                <Form.Label>Last Name</Form.Label>
                 <Form.Control
                   name="lastname"
                   onChange={handleChange}
                   value={userOrder.lastname || ''}
                 />
-              </Form.Group>
+              </Col>
             </Row>
 
-            <div className="input">
-              <label htmlFor="address">Street Address</label>
-              <input
+            <Row className="mb-3">
+              <Form.Label>Street Address</Form.Label>
+              <Form.Control
                 name="address"
                 onChange={handleChange}
                 value={userOrder.address || ''}
               />
-            </div>
-            <div className="input">
-              <label htmlFor="zipcode">Zipcode</label>
-              <input
-                name="zipcode"
-                onChange={handleChange}
-                value={userOrder.zipcode || ''}
-              />
-            </div>
-            <div className="input">
-              <label htmlFor="state">State</label>
-              <select
-                name="state"
-                onChange={handleChange}
-                value={userOrder.state || ''}
-              >
-                <option value="AK">AK</option>
-                <option value="AL">AL</option>
-                <option value="AR">AR</option>
-                <option value="AZ">AZ</option>
-                <option value="CA">CA</option>
-                <option value="CO">CO</option>
-                <option value="CT">CT</option>
-                <option value="DC">DC</option>
-                <option value="DE">DE</option>
-                <option value="FL">FL</option>
-                <option value="GA">GA</option>
-                <option value="HI">HI</option>
-                <option value="IA">IA</option>
-                <option value="ID">ID</option>
-                <option value="IL">IL</option>
-                <option value="IN">IN</option>
-                <option value="KS">KS</option>
-                <option value="KY">KY</option>
-                <option value="LA">LA</option>
-                <option value="MA">MA</option>
-                <option value="MD">MD</option>
-                <option value="ME">ME</option>
-                <option value="MI">MI</option>
-                <option value="MN">MN</option>
-                <option value="MO">MO</option>
-                <option value="MS">MS</option>
-                <option value="MT">MT</option>
-                <option value="NC">NC</option>
-                <option value="ND">ND</option>
-                <option value="NE">NE</option>
-                <option value="NH">NH</option>
-                <option value="NJ">NJ</option>
-                <option value="NM">NM</option>
-                <option value="NV">NV</option>
-                <option value="NY">NY</option>
-                <option value="OH">OH</option>
-                <option value="OK">OK</option>
-                <option value="OR">OR</option>
-                <option value="PA">PA</option>
-                <option value="PR">PR</option>
-                <option value="RI">RI</option>
-                <option value="SC">SC</option>
-                <option value="SD">SD</option>
-                <option value="TN">TN</option>
-                <option value="TX">TX</option>
-                <option value="UT">UT</option>
-                <option value="VA">VA</option>
-                <option value="VT">VT</option>
-                <option value="WA">WA</option>
-                <option value="WI">WI</option>
-                <option value="WV">WV</option>
-                <option value="WY">WY</option>
-              </select>
-            </div>
+            </Row>
+            <Row>
+              <Form.Group as={Col}>
+                <Form.Label>Zipcode</Form.Label>
+                <Form.Control
+                  name="zipcode"
+                  onChange={handleChange}
+                  value={userOrder.zipcode || ''}
+                />
+              </Form.Group>
+              <Form.Group as={Col}>
+                <Form.Label htmlFor="state">State</Form.Label>
+                <Form.Select
+                  name="state"
+                  onChange={handleChange}
+                  value={userOrder.state || ''}
+                >
+                  <option value="AK">AK</option>
+                  <option value="AL">AL</option>
+                  <option value="AR">AR</option>
+                  <option value="AZ">AZ</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DC">DC</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="IA">IA</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="MA">MA</option>
+                  <option value="MD">MD</option>
+                  <option value="ME">ME</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MO">MO</option>
+                  <option value="MS">MS</option>
+                  <option value="MT">MT</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="NE">NE</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NV">NV</option>
+                  <option value="NY">NY</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="PR">PR</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VA">VA</option>
+                  <option value="VT">VT</option>
+                  <option value="WA">WA</option>
+                  <option value="WI">WI</option>
+                  <option value="WV">WV</option>
+                  <option value="WY">WY</option>
+                </Form.Select>
+              </Form.Group>
 
-            <div className="input">
-              <label htmlFor="email">Email</label>
-              <input
-                name="name"
-                onChange={handleChange}
-                type="email"
-                value={userOrder.email || ''}
-              />
-            </div>
+              <Form.Group as={Col}>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  name="name"
+                  onChange={handleChange}
+                  type="email"
+                  value={userOrder.email || ''}
+                />
+              </Form.Group>
+            </Row>
           </Form>
-          <button onClick={handleSubmit}> Submit Address and Payment</button>
+          <p></p>
+          <Button onClick={handleSubmit}> Submit Address and Payment</Button>
         </div>
         /*
       FEATURES FOR THIS PAGE
