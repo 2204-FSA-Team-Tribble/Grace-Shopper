@@ -44,54 +44,75 @@ export class Cart extends React.Component {
     const products = this.props.cart.products || [];
 
     return (
-      <div>
-        <h3>Shopping Cart</h3>
-        {products.map((item, index) => {
-          return (
-            <div className="cart-item" key={index}>
-              <div>
-                <img src={`${item.product.image}`} />
-              </div>
-              <div>
-                <p>{item.product.name}</p>
-                <strong>${item.price}</strong>
-                <p>{item.description}</p>
-                <span>Qty: </span>
-                <select
-                  name="quantity"
-                  onChange={(event) => this.handleChange(event, item)}
-                  value={this.props.cart.products[index].quantity}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
-                </select>
-                <button
-                  type="button"
-                  onClick={() => this.props.removeProduct(item.id)}
-                >
-                  Remove
-                </button>
-              </div>
+      <div className="container">
+        <div className="table-responsive">
+          <div className="row admin-top">
+            <div className="col">
+              <h1>Shopping Cart</h1>
             </div>
-          );
-        })}
-        <h5>Total: ${this.props.cart.total}</h5>
-        <div className="container">
-          <div className="row">
-            <NavLink
-              to="/checkout"
-              className="btn btn-outline-secondary mb-5 w-25 mx-auto"
-            >
-              Proceed to Checkout
-            </NavLink>
+          </div>
+          <table className="table table-sm">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th></th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((item, index) => {
+                return (
+                  <tr className="cart-item" key={index}>
+                    <td>
+                      <img
+                        className="cart-product-picture"
+                        src={`${item.product.image}`}
+                      />
+                    </td>
+                    <td>{item.product.name}</td>
+
+                    <td>
+                      <select
+                        name="quantity"
+                        onChange={(event) => this.handleChange(event, item)}
+                        value={this.props.cart.products[index].quantity}
+                      >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-sm btn-block btn-danger"
+                        type="button"
+                        onClick={() => this.props.removeProduct(item.id)}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                    <td>
+                      <strong>${item.price}</strong>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <div className="checkout-total">
+            <h5>Total: ${this.props.cart.total}</h5>
+            <button className="btn btn-md btn-block btn-success" type="button">
+              Proceed to checkout
+            </button>
           </div>
         </div>
       </div>

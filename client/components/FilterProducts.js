@@ -30,7 +30,57 @@ const FilterProducts = () => {
 
   return (
     <>
-      <div>
+      <div className="container  my-5 py-5">
+        <div>
+          <div>
+            <p>Shop By Pet</p>
+          </div>
+
+          <NavLink to="/dog" className="btn">
+            <img
+              src="https://media.istockphoto.com/photos/playful-happy-smiling-pet-dog-running-in-the-grass-picture-id1320018473?b=1&k=20&m=1320018473&s=170667a&w=0&h=Q-U9yI4JjCJYSAzXZwpnM4HuaXPzo4K-vBsgO7lanyo="
+              onClick={() => filteredProducts('dog')}
+              className="card-img-top"
+              alt="dog"
+              height="70px"
+            />
+            <p className="display-7">Dog</p>
+          </NavLink>
+
+          <NavLink to="/cat" className="btn">
+            <img
+              src="https://nationaltoday.com/wp-content/uploads/2020/08/international-cat-day.jpg"
+              onClick={() => filteredPets('cat')}
+              className="card-img-top"
+              alt="cat"
+              height="70px"
+            />
+            <p className="display-7">Cat</p>
+          </NavLink>
+
+          <NavLink to="/horse" className="btn">
+            <img
+              src="https://m.media-amazon.com/images/I/71NUxuvSGuL._AC_SX679_.jpg"
+              onClick={() => filteredPets('horse')}
+              className="card-img-top"
+              alt="horse"
+              height="70px"
+            />
+            <p className="display-7">Horse</p>
+          </NavLink>
+
+          <NavLink to="/other" className="btn">
+            <img
+              src="https://images.unsplash.com/photo-1566650554919-44ec6bbe2518?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmVhdXRpZnVsJTIwYW5pbWFsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+              onClick={() => filteredPets('other')}
+              className="card-img-top"
+              alt="other"
+              height="70px"
+            />
+            <p className="display-7">Other</p>
+          </NavLink>
+        </div>
+
         <div>
           <p>Shop By Pet</p>
         </div>
@@ -42,7 +92,6 @@ const FilterProducts = () => {
             className="card-img-top"
             alt="dog"
             height="70px"
-            width="70px"
           />
           <p className="display-7">Dog</p>
         </a>
@@ -54,7 +103,6 @@ const FilterProducts = () => {
             className="card-img-top"
             alt="cat"
             height="70px"
-            width="70px"
           />
           <p className="display-7">Cat</p>
         </NavLink>
@@ -66,7 +114,6 @@ const FilterProducts = () => {
             className="card-img-top"
             alt="horse"
             height="70px"
-            width="70px"
           />
           <p className="display-7">Horse</p>
         </NavLink>
@@ -78,7 +125,6 @@ const FilterProducts = () => {
             className="card-img-top"
             alt="other"
             height="70px"
-            width="auto"
           />
           <p className="display-7">Other</p>
         </NavLink>
