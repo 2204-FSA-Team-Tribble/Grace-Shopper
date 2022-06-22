@@ -4,6 +4,7 @@ import { setCart, checkoutCart } from '../store/cart';
 import { setUser } from '../store/singleUser';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 export class Checkout extends React.Component {
   constructor(props) {
@@ -123,23 +124,22 @@ export class Checkout extends React.Component {
           <h4>Address:</h4>
           <p></p>
           <Form onSubmit={handleSubmit}>
-            <Row className='mb-3'>
-
-            <Form.Group className="md-form w-50">
-              <Form.Label htmlFor="firstname">First Name</Form.Label>
-              <Form.Control
-                name="firstname"
-                onChange={handleChange}
-                value={userOrder.firstname || ''}
+            <Row className="mb-3">
+              <Form.Group className="md-form w-50">
+                <Form.Label htmlFor="firstname">First Name</Form.Label>
+                <Form.Control
+                  name="firstname"
+                  onChange={handleChange}
+                  value={userOrder.firstname || ''}
                 />
-              <Form.Label htmlFor="lastname">Last Name</Form.Label>
-              <Form.Control
-                name="lastname"
-                onChange={handleChange}
-                value={userOrder.lastname || ''}
+                <Form.Label htmlFor="lastname">Last Name</Form.Label>
+                <Form.Control
+                  name="lastname"
+                  onChange={handleChange}
+                  value={userOrder.lastname || ''}
                 />
-            </Form.Group>
-                </Row>
+              </Form.Group>
+            </Row>
 
             <div className="input">
               <label htmlFor="address">Street Address</label>
