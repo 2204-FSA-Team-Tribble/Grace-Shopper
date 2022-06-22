@@ -122,9 +122,9 @@ export class UserAdmin extends React.Component {
               <label className='lead' htmlFor="email">Email</label>
               <input
                 class="form-control"
-                name="name"
+                name="email"
                 onChange={handleChange}
-                type="email"
+                // type="email"
                 value={user.email || ''}
               />
             </div>
