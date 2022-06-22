@@ -7,7 +7,7 @@ import CartLink from './CartLink';
 const Navbar = ({ handleClick, isLoggedIn }) => {
   return (
     <div>
-      <nav>
+      <nav id="navbar_top">
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
@@ -171,5 +171,18 @@ const mapDispatch = (dispatch) => {
     },
   };
 };
+
+document.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 50) {
+      document.getElementById('navbar_top').classList.add('fixed-top');
+      navbar_height = document.querySelector('.navbar').offsetHeight;
+      document.body.style.paddingTop = navbar_height + 'px';
+    } else {
+      this.document.getElementById('navbar_top').classList.remove('fixed-top');
+      this.document.body.style.paddingTop = '0';
+    }
+  });
+});
 
 export default connect(mapState, mapDispatch)(Navbar);
