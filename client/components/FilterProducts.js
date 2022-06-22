@@ -231,8 +231,8 @@ const FilterProducts = () => {
       <div className='container home-products'>
         {filter.map((product) => {
           return (
-            <div className="container col-md-3 mb-4">
-              <div className="card h-100 text-center p-4" key={product.id}>
+            <div className="container col-md-3 mb-4" key={product.id}>
+              <div className="card h-100 text-center p-4">
                 <img
                   src={product.image}
                   className="card-img-top"

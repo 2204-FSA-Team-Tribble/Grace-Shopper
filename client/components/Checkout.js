@@ -98,7 +98,6 @@ export class Checkout extends React.Component {
     const products = this.props.cart.products || [];
     const userOrder = this.state;
     const { handleChange, handleSubmit } = this;
-    console.log('PROPSSSS', this.props);
     if (this.state.status === 'complete') {
       return (
         <Alert variant="success">
@@ -111,7 +110,7 @@ export class Checkout extends React.Component {
       return (<div>
         <Alert variant='danger'>
           <Alert.Heading>
-            Oops! Looks like you don't have any items in your cart to check out. 
+            Oops! Looks like you don't have any items in your cart to check out.
           </Alert.Heading>
         </Alert>
       </div>)
