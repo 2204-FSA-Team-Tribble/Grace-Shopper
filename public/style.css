@@ -98,3 +98,16 @@ a {
   height: auto;
   width: 100%;
 }
+
+.home-cards {
+  padding: 20px;
+}
+
+.home-card-img-top {
+  height: auto;
+  width: 100%;
+}
+
+.home-fonts {
+  color:black;
+}
