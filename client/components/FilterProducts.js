@@ -29,22 +29,23 @@ const FilterProducts = () => {
   };
 
   return (
-    <div>
+    <>
       <div>
         <div>
           <p>Shop By Pet</p>
         </div>
 
-        <NavLink to="/dog" className="btn">
+        <a href="/dog" className="btn">
           <img
             src="https://media.istockphoto.com/photos/playful-happy-smiling-pet-dog-running-in-the-grass-picture-id1320018473?b=1&k=20&m=1320018473&s=170667a&w=0&h=Q-U9yI4JjCJYSAzXZwpnM4HuaXPzo4K-vBsgO7lanyo="
             onClick={() => filteredProducts('dog')}
             className="card-img-top"
             alt="dog"
             height="70px"
+            width="70px"
           />
           <p className="display-7">Dog</p>
-        </NavLink>
+        </a>
 
         <NavLink to="/cat" className="btn">
           <img
@@ -53,6 +54,7 @@ const FilterProducts = () => {
             className="card-img-top"
             alt="cat"
             height="70px"
+            width="70px"
           />
           <p className="display-7">Cat</p>
         </NavLink>
@@ -64,6 +66,7 @@ const FilterProducts = () => {
             className="card-img-top"
             alt="horse"
             height="70px"
+            width="70px"
           />
           <p className="display-7">Horse</p>
         </NavLink>
@@ -75,6 +78,7 @@ const FilterProducts = () => {
             className="card-img-top"
             alt="other"
             height="70px"
+            width="auto"
           />
           <p className="display-7">Other</p>
         </NavLink>
@@ -148,7 +152,7 @@ const FilterProducts = () => {
           <p className="display-7">Other</p>
         </NavLink>
       </div>
-    </div>
+    </>
   );
 };
 
