@@ -37,3 +37,21 @@ router.get('/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+//update order by Id
+router.put('/:id', async (req, res, next) => {
+  try {
+    const orderId = req.params.id;
+    console.log('in route.put', req.body);
+    const order = await Order.findByPk(orderId);
+    await order.update(req.body);
+    console.log(order);
+    if (order.dataValues.status === 'complete') {
+      const newOrder = await Order.create();
+      await newOrder.setUser(order.dataValues.userId);
+    }
+    res.json(order);
+  } catch (err) {
+    next(err);
+  }
+});

@@ -157,6 +157,13 @@ async function seed() {
   await orders[1].setUser(users[7]);
   await orders[0].setUser(users[0]);
   await orders[2].setUser(users[9]);
+  await orders[3].setUser(users[1]);
+  await orders[4].setUser(users[2]);
+  await orders[5].setUser(users[3]);
+  await orders[6].setUser(users[4]);
+  await orders[7].setUser(users[5]);
+  await orders[8].setUser(users[6]);
+  await orders[9].setUser(users[8]);
   await orderItems[0].setOrder(orders[0]);
   await orderItems[1].setOrder(orders[1]);
   await orderItems[2].setOrder(orders[2]);

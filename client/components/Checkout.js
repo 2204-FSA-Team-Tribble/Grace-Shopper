@@ -1,104 +1,258 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCart } from '../store/cart';
+import { setCart, checkoutCart } from '../store/cart';
 import { setUser } from '../store/singleUser';
+import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
-
-let cartPlaceHolder = [
-  {
-    name: 'GAPZER Anti-Scratch Cat Shoes',
-    image: 'https://m.media-amazon.com/images/I/71EbAjac+pL._AC_UL320_.jpg',
-    petType: 'cat',
-    clothingType: 'shoes',
-    price: 12.99,
-  },
-  {
-    name: 'Dog Life Jackets, Ripstop Pet Floatation ',
-    image: 'https://m.media-amazon.com/images/I/71vgo2wI0NL._AC_UL320_.jpg',
-    petType: 'dog',
-    clothingType: 'swim',
-    price: 43.99,
-  },
-  {
-    name: 'CooShou 4 Pieces Bunny Clothes',
-    image: 'https://m.media-amazon.com/images/I/71ISX-nW6EL._AC_UL320_.jpg',
-    petType: 'other',
-    clothingType: 'shirt',
-    price: 23.99,
-  },
-];
-//Make sure to pass the isLoggedIn into the props.
 
 export class Checkout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cart: cartPlaceHolder,
-      user: {},
+      userId: 0,
+      orderId: 0,
+      firstname: '',
+      lastname: '',
+      address: '',
+      state: 'AL',
+      zipcode: 10000,
+      email: '',
+      total: 0,
+      status: 'cart',
+      completedOrderId: 0,
+      invalidSubmission: false,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    if (!this.props.auth.id) {
-      this.props.clearCart();
-    } else {
+    if (this.props.auth.id) {
       this.props.setCart(this.props.auth.id);
       this.props.setUser(this.props.auth.id);
+      this.setState({
+        userId: this.props.user.id,
+        orderId: this.props.cart.orderId,
+        firstname: this.props.user.firstname,
+        lastname: this.props.user.lastname,
+        address: this.props.user.address,
+        email: this.props.user.email,
+        zipcode: this.props.user.zipcode,
+        total: this.props.cart.total,
+      });
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.auth.id !== this.props.auth.id) {
-      if (!this.props.auth.id) {
-        this.props.clearCart();
-      } else {
-        this.props.setCart(this.props.auth.id);
-      }
+      this.props.setCart(this.props.auth.id);
+      this.props.setUser(this.props.auth.id);
+    }
+    if (
+      prevProps.user.id !== this.props.user.id ||
+      prevProps.cart.orderId !== this.props.cart.orderId
+    ) {
+      this.setState({
+        id: this.props.user.id,
+        orderId: this.props.cart.orderId,
+        firstname: this.props.auth.firstname,
+        lastname: this.props.user.lastname,
+        address: this.props.user.address,
+        zipcode: this.props.user.zipcode,
+        state: this.props.user.state,
+        email: this.props.user.email,
+        total: this.props.cart.total,
+      });
     }
   }
 
-  render() {
-    return (
-      <div>
-        <h3>Checkout Page</h3>
-      </div>
-      /*
-         FEATURES FOR THIS PAGE
-         Show the list of XitemsX, total.
-         Field to enter Address (populated with address if logged in)
-         Field to enter payment
-         Submit button that gives a "You did it" pop up
-        */
+  handleChange = (event) => {
+    let newValue = event.target.value;
+    this.setState({
+      [event.target.name]: newValue,
+    });
+  };
 
-      /* {cart.map((item, index) => {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const s = this.state;
+    let updatedOrder = {
+      orderId: s.orderId,
+      firstname: s.firstname,
+      lastname: s.lastname,
+      address: s.address,
+      state: s.state,
+      zipcode: s.zipcode,
+      email: s.email,
+      total: s.total,
+    };
+    this.setState({ completedOrderId: s.orderId, status: 'complete' });
+    console.log(this.state);
+    this.props.checkoutCart(this.state.orderId, updatedOrder);
+  };
+
+  render() {
+    const products = this.props.cart.products || [];
+    const userOrder = this.state;
+    const { handleChange, handleSubmit } = this;
+    if (this.state.status === 'complete') {
+      return (
+        <Alert variant="success">
+          <Alert.Heading>
+            Congrats, order {this.state.completedOrderId} is complete
+          </Alert.Heading>
+        </Alert>
+      );
+    } else {
+      return (
+        <div>
+          <h3>Checkout</h3>
+          <h4>Confirm your details below:</h4>
+          {products.map((item, index) => {
             return (
               <div className="cart-item" key={index}>
-                <img src={item.image} />
                 <div>
-                  <p>{item.name}</p>
-                  <strong>${item.price}</strong>
-                  <p>{item.description}</p>
-                  <span>Qty: </span>
+                  <p>
+                    {item.product.name}: <strong>${item.price}</strong>
+                  </p>
                 </div>
               </div>
             );
           })}
-          <div>TOTAL:</div>
-          {}
-          <button type="button">Complete checkout</button>
-         */
-    );
+          <h5>Total: ${userOrder.total}</h5>
+          <h4>Address:</h4>
+          <p></p>
+          <Form onSubmit={handleSubmit}>
+            <Row className='mb-3'>
+
+            <Form.Group className="md-form w-50">
+              <Form.Label htmlFor="firstname">First Name</Form.Label>
+              <Form.Control
+                name="firstname"
+                onChange={handleChange}
+                value={userOrder.firstname || ''}
+                />
+              <Form.Label htmlFor="lastname">Last Name</Form.Label>
+              <Form.Control
+                name="lastname"
+                onChange={handleChange}
+                value={userOrder.lastname || ''}
+                />
+            </Form.Group>
+                </Row>
+
+            <div className="input">
+              <label htmlFor="address">Street Address</label>
+              <input
+                name="address"
+                onChange={handleChange}
+                value={userOrder.address || ''}
+              />
+            </div>
+            <div className="input">
+              <label htmlFor="zipcode">Zipcode</label>
+              <input
+                name="zipcode"
+                onChange={handleChange}
+                value={userOrder.zipcode || ''}
+              />
+            </div>
+            <div className="input">
+              <label htmlFor="state">State</label>
+              <select
+                name="state"
+                onChange={handleChange}
+                value={userOrder.state || ''}
+              >
+                <option value="AK">AK</option>
+                <option value="AL">AL</option>
+                <option value="AR">AR</option>
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DC">DC</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="IA">IA</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="MA">MA</option>
+                <option value="MD">MD</option>
+                <option value="ME">ME</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MO">MO</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="NC">NC</option>
+                <option value="ND">ND</option>
+                <option value="NE">NE</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NV">NV</option>
+                <option value="NY">NY</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="PR">PR</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VA">VA</option>
+                <option value="VT">VT</option>
+                <option value="WA">WA</option>
+                <option value="WI">WI</option>
+                <option value="WV">WV</option>
+                <option value="WY">WY</option>
+              </select>
+            </div>
+
+            <div className="input">
+              <label htmlFor="email">Email</label>
+              <input
+                name="name"
+                onChange={handleChange}
+                type="email"
+                value={userOrder.email || ''}
+              />
+            </div>
+          </Form>
+          <button onClick={handleSubmit}> Submit Address and Payment</button>
+        </div>
+        /*
+      FEATURES FOR THIS PAGE
+      Show the list of XitemsX, XtotalX.
+      X Field to enter Address (populated with address if logged in)
+      Field to enter payment
+      Submit button that gives a "You did it" pop up
+      */
+      );
+    }
   }
 }
 
 const mapState = (state) => ({
   cart: state.cart,
-  user: state.user,
   auth: state.auth,
+  user: state.user,
 });
 
 const mapDispatch = (dispatch) => ({
-  getCart: (id) => dispatch(getCart(id)),
+  setCart: (id) => dispatch(setCart(id)),
+  setUser: (id) => dispatch(setUser(id)),
+  checkoutCart: (orderId, order) => dispatch(checkoutCart(orderId, order)),
 });
 
 export default connect(mapState, mapDispatch)(Checkout);
