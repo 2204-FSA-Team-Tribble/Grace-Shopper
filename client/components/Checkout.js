@@ -122,23 +122,25 @@ export class Checkout extends React.Component {
           <h5>Total: ${userOrder.total}</h5>
           <h4>Address:</h4>
           <p></p>
-          <form onSubmit={handleSubmit}>
-            <div className="input">
-              <label htmlFor="firstname">First Name</label>
-              <input
+          <Form onSubmit={handleSubmit}>
+            <Row className='mb-3'>
+
+            <Form.Group className="md-form w-50">
+              <Form.Label htmlFor="firstname">First Name</Form.Label>
+              <Form.Control
                 name="firstname"
                 onChange={handleChange}
                 value={userOrder.firstname || ''}
-              />
-            </div>
-            <div className="input">
-              <label htmlFor="lastname">Last Name</label>
-              <input
+                />
+              <Form.Label htmlFor="lastname">Last Name</Form.Label>
+              <Form.Control
                 name="lastname"
                 onChange={handleChange}
                 value={userOrder.lastname || ''}
-              />
-            </div>
+                />
+            </Form.Group>
+                </Row>
+
             <div className="input">
               <label htmlFor="address">Street Address</label>
               <input
@@ -226,7 +228,7 @@ export class Checkout extends React.Component {
                 value={userOrder.email || ''}
               />
             </div>
-          </form>
+          </Form>
           <button onClick={handleSubmit}> Submit Address and Payment</button>
         </div>
         /*

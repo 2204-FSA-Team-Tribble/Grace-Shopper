@@ -163,7 +163,7 @@ export const checkoutCart = (orderId, order) => {
 };
 
 // Initial State
-const initialState = { products: [], total: 0 };
+const initialState = { products: [], total: 0, orderId: null };
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
@@ -174,7 +174,7 @@ export default function cartReducer(state = initialState, action) {
         orderId: action.orderId,
       };
     case CLEAR_CART:
-      return { products: [], total: 0 };
+      return { products: [], total: 0, orderId: null };
     case ADD_PRODUCT:
       return { ...state, products: [...state.products, action.product] };
     case MODIFY_PRODUCT:
@@ -205,6 +205,7 @@ export default function cartReducer(state = initialState, action) {
       return {
         products: [],
         total: 0,
+        orderId: null,
       };
     default:
       return state;
