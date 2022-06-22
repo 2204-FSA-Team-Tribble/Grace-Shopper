@@ -228,33 +228,34 @@ const FilterProducts = () => {
         </div>
       </div>
       </div>
-
-      {filter.map((product) => {
-        return (
-          <div className="col-md-3 mb-4" key={product.id}>
-            <div className="card h-100 text-center p-4">
-              <img
-                src={product.image}
-                className="card-img-top"
-                alt={product.name}
-                height="250px"
-              />
-              <div className="card-body">
-                <h5 className="card-title mb-0">
-                  {product.name.substring(0, 15)}...
-                </h5>
-                <p className="card-text lead fw-bold">${product.price}</p>
-                <NavLink
-                  to={`/products/${product.id}`}
-                  className="btn btn-outline-secondary"
-                >
-                  {user.id > -1 ? "Buy Now" : "View Item"}
-                </NavLink>
+      <div className='container home-products'>
+        {filter.map((product) => {
+          return (
+            <div className="container col-md-3 mb-4">
+              <div className="card h-100 text-center p-4" key={product.id}>
+                <img
+                  src={product.image}
+                  className="card-img-top"
+                  alt={product.name}
+                  height="250px"
+                />
+                <div className="card-body">
+                  <h5 className="card-title mb-0">
+                    {product.name.substring(0, 15)}...
+                  </h5>
+                  <p className="card-text lead fw-bold">${product.price}</p>
+                  <NavLink
+                    to={`/products/${product.id}`}
+                    className="btn btn-outline-secondary"
+                  >
+                    {user.id > -1 ? "Buy Now" : "View Item"}
+                  </NavLink>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </>
   );
 };
