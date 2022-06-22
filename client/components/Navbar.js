@@ -141,8 +141,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                     >
                       <i className="fa fa-user-plus me-1"></i>Signup
                     </NavLink>
-
-                    <CartLink />
                   </div>
                 </div>
               </div>
@@ -176,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', function () {
     if (window.scrollY > 50) {
       document.getElementById('navbar_top').classList.add('fixed-top');
-      navbar_height = document.querySelector('.navbar').offsetHeight;
+      let navbar_height = document.querySelector('.navbar').offsetHeight;
       document.body.style.paddingTop = navbar_height + 'px';
     } else {
       this.document.getElementById('navbar_top').classList.remove('fixed-top');

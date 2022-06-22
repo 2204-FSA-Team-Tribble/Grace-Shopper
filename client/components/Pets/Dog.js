@@ -10,6 +10,7 @@ const Dog = () => {
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.products);
+  const user = useSelector((state) => state.auth)
 
   useEffect(() => {
     setisLoading(false);
@@ -86,7 +87,7 @@ const Dog = () => {
                     to={`/products/${product.id}`}
                     className="btn btn-outline-secondary"
                   >
-                    Buy Now
+                    {user.id > -1 ? "Buy Now" : "View Item"}
                   </NavLink>
                 </div>
               </div>

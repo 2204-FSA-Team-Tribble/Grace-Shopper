@@ -19,6 +19,8 @@ export class Products extends React.Component {
   }
 
   render() {
+    const userId = this.props.auth.id
+
     const Loading = () => {
       return (
         <>
@@ -49,7 +51,7 @@ export class Products extends React.Component {
                       to={`/products/${product.id}`}
                       className="btn btn-outline-secondary"
                     >
-                      Buy Now
+                      {userId > -1 ? "Buy Now" : "View Item"}
                     </Link>
                   </div>
                 </div>
@@ -79,7 +81,7 @@ export class Products extends React.Component {
 }
 
 const mapState = (state) => {
-  return { products: state.products };
+  return { products: state.products, auth: state.auth, };
 };
 
 const mapDispatch = (dispatch) => {
