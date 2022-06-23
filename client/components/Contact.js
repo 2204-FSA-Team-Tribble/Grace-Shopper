@@ -37,7 +37,7 @@ const Contact = () => {
                   htmlFor="exampleFormControlInput1"
                   className="form-label"
                 >
-                  Message
+                  Email
                 </label>
                 <input
                   type="email"

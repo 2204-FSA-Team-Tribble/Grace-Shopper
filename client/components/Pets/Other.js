@@ -10,6 +10,7 @@ const Other = () => {
   const dispatch = useDispatch();
 
   const { products } = useSelector((state) => state.products);
+  const user = useSelector((state) => state.auth)
 
   useEffect(() => {
     setisLoading(false);
@@ -80,7 +81,7 @@ const Other = () => {
                     to={`/products/${product.id}`}
                     className="btn btn-outline-secondary"
                   >
-                    Buy Now
+                    {user.id > -1 ? "Buy Now" : "View Item"}
                   </NavLink>
                 </div>
               </div>

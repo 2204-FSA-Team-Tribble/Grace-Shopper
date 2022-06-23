@@ -9,6 +9,8 @@ const FilterProducts = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
 
+  const user = useSelector((state) => state.auth)
+
   useEffect(() => {
     setFilter(products);
     setisLoading(false);
@@ -229,8 +231,8 @@ const FilterProducts = () => {
       <div className='container home-products'>
         {filter.map((product) => {
           return (
-            <div className="container col-md-3 mb-4">
-              <div className="card h-100 text-center p-4" key={product.id}>
+            <div className="container col-md-3 mb-4" key={product.id}>
+              <div className="card h-100 text-center p-4">
                 <img
                   src={product.image}
                   className="card-img-top"
@@ -246,7 +248,7 @@ const FilterProducts = () => {
                     to={`/products/${product.id}`}
                     className="btn btn-outline-secondary"
                   >
-                    Buy Now
+                    {user.id > -1 ? "Buy Now" : "View Item"}
                   </NavLink>
                 </div>
               </div>

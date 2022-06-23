@@ -19,6 +19,7 @@ class SingleProduct extends React.Component {
 
   render() {
     let product = this.props.product.product || {};
+    const userId = this.props.auth.id
 
     const Loading = () => {
       return <>Loading....</>;
@@ -39,7 +40,8 @@ class SingleProduct extends React.Component {
             <h3 className="display-7">{product.clothingType}</h3>
             <h3 className="display-6 fw-bold my-4">${product.price}</h3>
             <p className="lead">{product.description}</p>
-            <button
+            {userId > -1 ? (
+            <><button
               className="btn btn-outline-secondary px-4 py-2"
               onClick={() => this.props.addProduct(this.props.auth.id, product)}
             >
@@ -47,7 +49,7 @@ class SingleProduct extends React.Component {
             </button>
             <NavLink to="/cart" className="btn btn-secondary ms-2 px-3">
               Go to Cart
-            </NavLink>
+            </NavLink></>) : <></>}
           </div>
         </>
       );

@@ -43,14 +43,10 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/" component={Home} />
-
             <Route exact path="/about" component={About} />
-
             <Route exact path="/contact" component={Contact} />
-
             <Route exact path="/adminhome" component={AdminHome} />
             <Route exact path="/loginredirect" component={LoginRedirect} />
-
             <Route exact path="/products" component={Products} />
             <Route exact path="/products/:id" component={SingleProduct} />
             <Route exact path="/productsadmin" component={ProductsAdmin} />
